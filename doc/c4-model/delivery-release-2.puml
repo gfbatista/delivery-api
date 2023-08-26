@@ -1,0 +1,33 @@
+@startuml Controle de entrega de pedidos (delivery)
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+
+!include DEVICONS/nodejs.puml
+!include DEVICONS/mysql.puml
+!includeurl ICONURL/devicons2/kotlin.puml
+
+title "Diagrama de Conteineres do Sistema de Controle de Entrega de Pedidos"
+
+SHOW_PERSON_PORTRAIT()
+LAYOUT_LANDSCAPE()
+
+Person(admin, "Admin")
+Person(user, "User")
+Person(deliveryman, "Deliveryman")
+
+System_Boundary(delivery_context, "Delivery Context") {
+    Container(deliverybff, "delivery-bff", "Kotlin","BFF da api", $sprite = "kotlin")
+    Container(deliveryapi, "delivery-api", "NodeJs","Provê funcionalidades para controle de entregas de pedidos via API", $sprite = "nodejs")
+    Container(deliverydb, "delivery-db", "MySQL", "Banco de dados", $sprite = "mysql")
+}
+
+Rel(admin, deliverybff, "Faz uso do", "[sync/json/https]")
+Rel(user, deliverybff, "Faz uso do", "[sync/json/https]")
+Rel(deliveryman, deliverybff, "Faz uso do", "[sync/json/https]")
+Rel(deliverybff, deliveryapi, "Faz uso do", "[sync/json/https]")
+Rel(deliveryapi, deliverydb, "Lê e escreve em", "[sync/SQL]")
+
+@enduml

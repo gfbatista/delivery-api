@@ -1,0 +1,53 @@
+@startuml Cadastro do controle de contagem
+title Cadastro do controle de contagem
+  actor "Admin/Estoquista"
+  participant "Aquaman App" #406DD8
+  participant "Aquaman Api" #406DD8
+  participant "Darkseid Api" #193464
+  participant "Batman Api" #8698C0
+  alt Admin/Estoquista deseja cadastrar uma nova contagem
+    "Admin/Estoquista" -> "Aquaman App": Abre a tela de contagem
+    alt buscar a listagem de familias
+        "Aquaman App" -> "Aquaman Api": GET /v1/organizations/products/families
+        "Aquaman Api" -> "Batman Api": GET /v1/organizations/products/families
+        "Batman Api" -> "Aquaman Api": http status 200
+        "Aquaman Api" -> "Aquaman App": http status 200
+    end
+    alt buscar o grupo de filiais
+        "Aquaman App" -> "Aquaman Api": GET /v1/organizations/{id}/counting_groups?expand=true
+        "Aquaman Api" -> "Darkseid Api": GET /v1/organizations/{id}/counting_groups?expand=true
+        "Darkseid Api" -> "Aquaman Api": http status 200
+        "Aquaman Api" -> "Aquaman App": http status 200
+    end
+    alt buscar a listagem de tipo de contagem
+        "Aquaman App" -> "Aquaman Api": GET v1/organizations/${id}/counting_types
+        "Aquaman Api" -> "Darkseid Api": GET v1/organizations/${id}/counting_types
+        "Darkseid Api" -> "Aquaman Api": http status 200
+        "Aquaman Api" -> "Aquaman App": http status 200
+    end
+    alt buscar a quantidade de produtos disponíveis no Eddie
+      "Aquaman App" -> "Aquaman Api": GET /v1/organizations/{id}/branches/{id}/stocks?family.id={id}
+      "Aquaman Api" -> "Eddie": GET /v3/stock/balances?balance[0].family.id={family_id}&balance[0].stock.branch.id={branch_id}&offset=0
+      "Eddie" -> "Aquaman Api": http status 200
+      "Aquaman Api" -> "Aquaman App": http status 200
+    end
+    "Aquaman App" ->  "Aquaman Api": POST v1/organizations/${id}/scheduled_countings
+    "Aquaman Api" -> "Darkseid Api": POST v1/organizations/${id}/scheduled_countings
+    "Darkseid Api" -> "Aquaman Api": http status 201
+    "Aquaman Api" -> "Aquaman App": http status 201
+  end
+  alt Admin/Estoquista deseja consultar/deletar uma nova contagem
+  "Admin/Estoquista" -> "Aquaman App": Abre a tela de contagem
+    alt buscar a listagem de contagens
+      "Aquaman App" ->  "Aquaman Api": GET /v1/organizations/${id}/scheduled_countings?branch_id={id}      
+      "Aquaman Api" ->  "Darkseid Api": GET /v1/organizations/${id}/scheduled_countings?branch_id={id}
+      "Darkseid Api" -> "Aquaman Api": http status 200
+    end
+    alt Deletar uma contagem
+      "Aquaman App" ->  "Aquaman Api": DELETE v1/organizations/${id}/scheduled_countings/{id}
+      "Aquaman Api" ->  "Darkseid Api": DELETE v1/organizations/${id}/scheduled_countings/{id}
+      "Darkseid Api" -> "Aquaman Api": http status 204
+      "Aquaman Api" -> "Aquaman App": http status 204
+    end
+  end
+@enduml

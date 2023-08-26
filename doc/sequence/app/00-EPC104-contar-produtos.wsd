@@ -1,0 +1,31 @@
+@startuml Fluxo de contagem dos produtos
+title Fluxo de contagem dos produtos
+
+  actor "estoquista"
+  participant "Catwoman App" #193464  
+  participant "Catwoman Api" #193464
+  participant "Darkseid Api" #193464  
+  participant "Batman Api" #8698C0
+
+  alt "consultar os tipos de seções"
+    "Catwoman App" -> "Catwoman Api": GET /v1/organizations/{id}/section_types 
+    "Catwoman Api" -> "Batman Api": GET /v1/batman-api/sections/types
+    "Batman Api" -> "Catwoman Api": http status 200
+    "Catwoman Api" -> "Catwoman App": http status 200
+  end
+
+  alt "Estoquista bipa os produtos e salva a contagem no servidor"
+    "estoquista" -> "Catwoman App": Abre a camera do celular \nDigita o código de barras\nUtiliza o coletor
+    "Catwoman App" -> "Catwoman App": Valida se o produto bipado esta na lista da familia salva localmente
+    "estoquista" -> "Catwoman App": deseja salvar as contagens no servidor
+    "Catwoman App" -> "Catwoman Api": DELETE /v1/organizations/{id}/branches/{id}/countings/{id}/counting_products?user_id=”ex_ample”
+    "Catwoman Api" -> "Darkseid Api": DELETE /v1/organizations/{id}/branches/{id}/countings/{id}/counting_products?user_id=”ex_ample”
+    "Darkseid Api" -> "Catwoman Api": http status 204
+    "Catwoman Api" -> "Catwoman App": http status 204
+    "Catwoman App" -> "Catwoman Api": POST /v1/organizations/{id}/branches/{id}/countings/{id}/counting_products
+    "Catwoman Api" -> "Darkseid Api": POST /v1/organizations/{id}/branches/{id}/countings/{id}/counting_products
+    "Darkseid Api" -> "Catwoman Api": http status 201
+    "Catwoman Api" -> "Catwoman App": http status 201
+    "Catwoman App" -> "estoquista": exibe mensagem de sucesso
+  end
+@enduml

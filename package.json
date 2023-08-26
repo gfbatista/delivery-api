@@ -1,0 +1,28 @@
+{
+  "name": "delivery-api",
+  "version": "1.0.0",
+  "description": "order delivery management",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.5.6",
+    "@typescript-eslint/eslint-plugin": "6.4.1",
+    "@typescript-eslint/parser": "6.4.1",
+    "eslint": "8.48.0",
+    "tsup": "7.2.0",
+    "tsx": "3.12.7",
+    "typescript": "4.9.5"
+  },
+  "dependencies": {
+    "dotenv": "16.3.1",
+    "fastify": "4.21.0",
+    "zod": "3.22.2"
+  }
+}

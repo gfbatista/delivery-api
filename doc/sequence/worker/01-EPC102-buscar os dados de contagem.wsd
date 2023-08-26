@@ -1,0 +1,26 @@
+@startuml Fluxo de consulta das contagens no app
+title Fluxo de consulta das contagens no app
+
+  actor "estoquista"
+  participant "Catwoman App" #193464  
+  participant "Catwoman Api" #193464
+  participant "Darkseid Api" #193464  
+  participant "Batman Api" #8698C0
+
+  alt consultar uma contagem
+    "estoquista" -> "Catwoman App": Estoquista abre o app para \n consultar contagens disponíveis
+    "Catwoman App" -> "Catwoman Api": GET /v1/organizations/{id}/branches/{id}/countings?counting_status.slug=”toStart”
+    "Catwoman Api" -> "Darkseid Api": GET /v1/organizations/{id}/branches/{id}/countings?counting_status.slug=”toStart”
+    "Darkseid Api" -> "Catwoman Api": http status 200
+    "Catwoman Api" -> "Catwoman App": http status 200
+    "Catwoman App" -> "estoquista": exibe lista de contagens disponíveis    
+  end
+  alt estoquista escolhe qual contagem iniciar
+    "estoquista" -> "Catwoman App": Estoquista escolhe qual contagem iniciar
+    "Catwoman App" -> "Catwoman Api": GET /v1/organizations/families/{id}/products
+    "Catwoman Api" -> "Batman Api": GET /v2/organizations/families/{id}/products
+    "Batman Api" -> "Catwoman Api": http status 200
+    "Catwoman Api" -> "Catwoman App": http status 200
+    "Catwoman App" -> "Catwoman App": salva os dados async storage
+  end
+@enduml
