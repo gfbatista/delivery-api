@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid())
+  name      String
+  userName  String    @unique @map("user_name")
+  login     String
+  email     String    @unique
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+  Address   Address[]
+
+  @@map("users")
+}
+
+model City {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid())
+  name      String
+  state     String
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("cities")
+}
+
+model Address {
+  id   Int    @id @default(autoincrement())
+  uuid String @default(uuid())
+
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  street    String
+  city      String
+  state     String
+  number    String?
+  zipcode   String
+  latitude  String
+  longitude String
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("adresses")
+}
