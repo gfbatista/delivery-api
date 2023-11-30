@@ -1,0 +1,5 @@
+@startuml Fluxo de busca da categoria
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/categories
+"delivery-db"  -> "delivery-api" : Retorna as categorias [200]
+@enduml

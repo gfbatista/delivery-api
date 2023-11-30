@@ -8,10 +8,11 @@
 
 !include DEVICONS/nodejs.puml
 !include DEVICONS/mysql.puml
-!includeurl ICONURL/devicons2/kotlin.puml
+!include DEVICONS2/nestjs.puml
 !include RABBITMQURL/rabbitmq.puml
 
 AddRelTag("async", $lineStyle = DashedLine())
+AddContainerTag(payment, $fontColor="#0A0A0A", $borderColor="#438DD5", $legendText="payment", $bgColor="#8698C0")
 
 title "Diagrama de Conteineres do Sistema de Controle de Entrega de Pedidos"
 
@@ -23,11 +24,14 @@ Person(user, "User")
 Person(deliveryman, "Deliveryman")
 
 System_Boundary(delivery_context, "Delivery Context") {
-    Container(deliverybff, "delivery-bff", "Kotlin","BFF da api", $sprite = "kotlin")
+    Container(deliverybff, "delivery-bff", "Nestjs","BFF da api", $sprite = "nestjs")
     Container(deliveryapi, "delivery-api", "NodeJs","Provê funcionalidades para controle de entregas de pedidos via API", $sprite = "nodejs")
     Container(deliverydb, "delivery-db", "MySQL", "Banco de dados", $sprite = "mysql")
-    ContainerQueue(deliverymq, "delivery-queue", "RabbitMQ", "Armazena os pedidos realizados", $sprite = "rabbitmq")
-    Container(deliveryworker, "delivery-worker", "Kotlin","Consume os dados da fila e envia para a api", $sprite = "kotlin")
+}
+
+System_Boundary(payment_context, "Payment Context") {
+    Container(deliveryworker, "delivery-worker", "Kotlin","Consome os pedidos da fila, processa o pagamento e envia pra api", $sprite = "kotlin", $tags="payment")
+    ContainerQueue(deliverymq, "delivery-queue", "RabbitMQ", "Armazena os pedidos realizados", $sprite = "rabbitmq", $tags="payment")
 }
 
 Rel(admin, deliverybff, "Faz uso do", "[sync/json/https]")
@@ -36,7 +40,7 @@ Rel(deliveryman, deliverybff, "Faz uso do", "[sync/json/https]")
 Rel(deliverybff, deliveryapi, "Faz uso do", "[sync/json/https]")
 Rel(deliveryapi, deliverydb, "Lê e escreve em", "[sync/SQL]")
 Rel(deliveryapi, deliverymq, "Envia para", "[json]", $tags = "async")
-Rel(deliveryworker, deliverymq, "Consome em", "[json]", $tags = "async")
+Rel_D(deliveryworker, deliverymq, "Consome em", "[json]", $tags = "async")
 Rel(deliveryworker, deliveryapi, "Faz o uso do", "[json/https]", $tags = "async")
 
 @enduml

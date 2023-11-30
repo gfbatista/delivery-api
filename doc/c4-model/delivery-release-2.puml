@@ -7,7 +7,7 @@
 
 !include DEVICONS/nodejs.puml
 !include DEVICONS/mysql.puml
-!includeurl ICONURL/devicons2/kotlin.puml
+!include DEVICONS2/nestjs.puml
 
 title "Diagrama de Conteineres do Sistema de Controle de Entrega de Pedidos"
 
@@ -19,7 +19,7 @@ Person(user, "User")
 Person(deliveryman, "Deliveryman")
 
 System_Boundary(delivery_context, "Delivery Context") {
-    Container(deliverybff, "delivery-bff", "Kotlin","BFF da api", $sprite = "kotlin")
+    Container(deliverybff, "delivery-bff", "Nestjs","BFF da api", $sprite = "nestjs")
     Container(deliveryapi, "delivery-api", "NodeJs","Provê funcionalidades para controle de entregas de pedidos via API", $sprite = "nodejs")
     Container(deliverydb, "delivery-db", "MySQL", "Banco de dados", $sprite = "mysql")
 }

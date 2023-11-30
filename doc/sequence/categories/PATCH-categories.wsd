@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração da categoria
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PATCH /v1/categories/:uuid
+"delivery-db"  -> "delivery-api" : Altera a categoria [204]
+@enduml

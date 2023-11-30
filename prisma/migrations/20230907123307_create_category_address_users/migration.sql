@@ -15,11 +15,11 @@ CREATE TABLE `users` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `cities` (
+CREATE TABLE `categories` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `state` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `deleted_at` DATETIME(3) NULL,
 
@@ -33,6 +33,7 @@ CREATE TABLE `adresses` (
     `user_id` INTEGER NOT NULL,
     `street` VARCHAR(191) NOT NULL,
     `city` VARCHAR(191) NOT NULL,
+    `district` VARCHAR(191) NOT NULL,
     `state` VARCHAR(191) NOT NULL,
     `number` VARCHAR(191) NULL,
     `zipcode` VARCHAR(191) NOT NULL,

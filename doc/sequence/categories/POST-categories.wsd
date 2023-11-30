@@ -1,0 +1,5 @@
+@startuml Fluxo de criação da categoria
+database "delivery-db"
+"delivery-api" -> "delivery-db" : POST /v1/categories
+"delivery-db"  -> "delivery-api" : Salva a categoria [201]
+@enduml

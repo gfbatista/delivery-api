@@ -7,7 +7,6 @@
 
 !include DEVICONS/nodejs.puml
 !include DEVICONS/mysql.puml
-!includeurl ICONURL/devicons2/kotlin.puml
 
 title "Diagrama de Conteineres do Sistema de Controle de Entrega de Pedidos"
 

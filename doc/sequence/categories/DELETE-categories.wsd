@@ -1,0 +1,5 @@
+@startuml Fluxo de deleção da categoria
+database "delivery-db"
+"delivery-api" -> "delivery-db" : DELETE /v1/categories/:uuid
+"delivery-db"  -> "delivery-api" : Deleta a categoria [204]
+@enduml
