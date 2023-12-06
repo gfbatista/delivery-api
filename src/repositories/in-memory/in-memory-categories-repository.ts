@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { CategoriesRepository } from '../categories-repository';
 
 export class InMemoryCategoriesRepository implements CategoriesRepository {
-    public items: Category[] = [];
+    public categories: Category[] = [];
 
     async create(data: Prisma.CategoryCreateInput) {
         const category = {
@@ -16,8 +16,22 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
             deletedAt: null,
         };
 
-        this.items.push();
+        this.categories.push(category);
 
+        return category;
+    }
+
+    async findMany() {
+        return this.categories; 
+    }
+
+    async findByUuid(uuid: string) {
+        const category = this.categories.find((category) => category.uuid === uuid);
+
+        if (!category) {
+            return null;
+        }
+    
         return category;
     }
 }

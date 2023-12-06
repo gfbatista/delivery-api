@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Category, Prisma } from '@prisma/client';
 import { CategoriesRepository } from '../categories-repository';
 import { prisma } from '@/lib/prisma';
 
@@ -8,6 +8,22 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
             data,
         });
 
+        return category;
+    }
+
+    async findMany(): Promise<Category[]> {
+        const categories = await prisma.category.findMany();
+
+        return categories;
+    }
+
+    async findByUuid(uuid: string): Promise<Category | null> {
+        const category = await prisma.category.findUnique({
+            where: {
+                uuid
+            },
+        });
+        
         return category;
     }
 }

@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import { ZodError } from 'zod';
 import { categoriesRoutes } from './http/controllers/categories/routes';
+import { INTERNAL_SERVER_ERROR, BAD_REQUEST } from 'http-status';
 import { env } from './env';
 
 export const app = fastify();
@@ -10,7 +11,7 @@ app.register(categoriesRoutes);
 app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {
         return reply
-            .status(400)
+            .status(BAD_REQUEST)
             .send({ message: 'Validation error.', issues: error.format() });
     }
 
@@ -18,5 +19,5 @@ app.setErrorHandler((error, _, reply) => {
         console.error(error);
     }
 
-    return reply.status(500).send({ message: 'Internal server error.' });
+    return reply.status(INTERNAL_SERVER_ERROR).send({ message: 'Internal server error.' });
 });

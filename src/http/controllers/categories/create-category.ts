@@ -1,9 +1,10 @@
 import { PrismaCategoriesRepository } from '@/repositories/prisma/prisma-categories-repository';
 import { CreateCategoryUseCase } from '@/use-cases/categories/create-category';
+import { CREATED } from 'http-status';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
-export async function create(request: FastifyRequest, reply: FastifyReply) {
+export async function createCategory(request: FastifyRequest, reply: FastifyReply) {
     const createCategoryBodySchema = z.object({
         description: z.string().min(5),
         slug:z.string().min(3),
@@ -20,5 +21,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
         slug
     });
 
-    return reply.status(201).send(category);
+    return reply.status(CREATED).send(category);
 }
