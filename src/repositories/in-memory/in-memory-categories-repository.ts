@@ -12,7 +12,7 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
             description: data.description,
             slug: data.slug,
             createdAt: new Date(),
-            updatedAt: null,
+            updatedAt: new Date(),
             deletedAt: null,
         };
 
@@ -33,6 +33,14 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
         }
     
         return category;
+    }
+
+    async save(category: Category): Promise<void> {
+        const categoryIndex = this.categories.findIndex((item) => item.id === category.id);
+
+        if (categoryIndex >= 0) {
+            this.categories[categoryIndex] = category;
+        }
     }
 }
 

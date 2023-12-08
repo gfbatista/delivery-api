@@ -3,8 +3,14 @@ import { ZodError } from 'zod';
 import { categoriesRoutes } from './http/controllers/categories/routes';
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST } from 'http-status';
 import { env } from './env';
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
+import { swaggerOptions, swaggerUiOptions } from './config/swagger';
 
 export const app = fastify();
+
+app.register(fastifySwagger, swaggerOptions);
+app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(categoriesRoutes);
 

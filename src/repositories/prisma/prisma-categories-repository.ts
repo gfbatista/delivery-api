@@ -1,6 +1,6 @@
 import { Category, Prisma } from '@prisma/client';
 import { CategoriesRepository } from '../categories-repository';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/config/prisma';
 
 export class PrismaCategoriesRepository implements CategoriesRepository {
     async create(data: Prisma.CategoryCreateInput) {
@@ -12,7 +12,11 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     }
 
     async findMany(): Promise<Category[]> {
-        const categories = await prisma.category.findMany();
+        const categories = await prisma.category.findMany({
+            where: {
+                deletedAt: null
+            },
+        });
 
         return categories;
     }
@@ -25,5 +29,14 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
         });
         
         return category;
+    }
+
+    async save(category: Category): Promise<void> {
+        await prisma.category.update({
+            where: {
+                id: category.id,
+            },
+            data: category,
+        });
     }
 }
