@@ -24,17 +24,26 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     async findByUuid(uuid: string): Promise<Category | null> {
         const category = await prisma.category.findUnique({
             where: {
-                uuid
+                uuid,
             },
         });
         
         return category;
     }
 
-    async save(category: Category): Promise<void> {
+    async delete(category: Category): Promise<void> {
         await prisma.category.update({
             where: {
                 id: category.id,
+            },
+            data: category,
+        });
+    }
+
+    async save(category: Prisma.CategoryUncheckedCreateInput, uuid: string): Promise<void> {
+        await prisma.category.update({
+            where: {
+                uuid,
             },
             data: category,
         });

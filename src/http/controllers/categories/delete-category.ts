@@ -16,9 +16,9 @@ export async function deleteCategory(request: FastifyRequest, reply: FastifyRepl
         const categoriesRepository = new PrismaCategoriesRepository();
         const deleteCategoryUseCase = new DeleteCategoryUseCase(categoriesRepository);
 
-        const categories = await deleteCategoryUseCase.execute({ uuid });
+        await deleteCategoryUseCase.execute({ uuid });
 
-        return reply.status(NO_CONTENT).send(categories);
+        return reply.status(NO_CONTENT).send();
     } catch (err) {
         if (err instanceof ResourceNotFoundError) {
             return reply.status(NOT_FOUND).send({ message: err.message });

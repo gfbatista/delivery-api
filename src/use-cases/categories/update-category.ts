@@ -1,21 +1,25 @@
 import { CategoriesRepository } from '@/repositories/categories-repository';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
-interface GetCategoryByUuidUseCaseRequest {
-    uuid: string
-  }
+interface UpdateCategoryRequest {
+    uuid: string,
+    description: string
+    slug: string
+}
 
-export class DeleteCategoryUseCase {
+export class UpdateCategoryUseCase {
     constructor(private categoryRepository: CategoriesRepository) { }
 
-    async execute({ uuid } : GetCategoryByUuidUseCaseRequest): Promise<void> {
+    async execute({ uuid, description, slug }: UpdateCategoryRequest) {
         const category = await this.categoryRepository.findByUuid(uuid);
 
-        if (!category){
+        if (!category) {
             throw new ResourceNotFoundError();
         }
 
-        category.deletedAt = new Date();
-        this.categoryRepository.delete(category);
+        await this.categoryRepository.save({
+            description,
+            slug
+        }, uuid);
     }
 }
