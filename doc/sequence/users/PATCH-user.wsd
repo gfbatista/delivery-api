@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PATCH /v1/users/:uuid
+"delivery-db"  -> "delivery-api" : Altera o usuário [204]
+@enduml

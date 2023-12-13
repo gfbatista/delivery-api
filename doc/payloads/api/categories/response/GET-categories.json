@@ -5,7 +5,7 @@
         "description": "Hamburgueria",
         "slug": "Hamburgueria",
         "createdAt": "2023-08-28 13:44:51",
-        "updatedAt": null,
+        "updatedAt": "2023-08-28 13:44:51",
         "deletedAt": null
     },
     {
@@ -14,7 +14,7 @@
         "description": "Pizzaria",
         "slug": "Pizzaria",
         "createdAt": "2023-08-28 14:12:02",
-        "updatedAt": null,
+        "updatedAt": "2023-08-28 13:44:51",
         "deletedAt": null
     }
 ]

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "uuid": "77c7fdbb-1a41-474f-986d-d39fc47d9715",
+        "name": "Gilberto Ferrari",
+        "email": "gilberto@email.com",
+        "password": "99A29DC8105FD2FA39D8CDC04733938D",
+        "latitude": -21.0460305,
+        "longitude": -47.6808633,
+        "createdAt": "2023-12-12 13:44:51",
+        "updatedAt": "2023-12-12 13:44:51",
+        "deletedAt": null
+    },
+    {
+        "id": 2,
+        "uuid": "34aa99cc-b9eb-43d5-aac1-a619d7371afa",
+        "name": "José Alves",
+        "email": "jose@email.com",
+        "password": "8430894CFEB54A3625F18FE24FCE272E",
+        "latitude": -21.0460305,
+        "longitude": -47.6808633,
+        "createdAt": "2023-12-11 13:31:51",
+        "updatedAt": "2023-12-11 13:31:51",
+        "deletedAt": null
+    }
+]

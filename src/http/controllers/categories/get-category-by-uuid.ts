@@ -16,9 +16,9 @@ export async function getCategoryByUuid(request: FastifyRequest, reply: FastifyR
         const categoriesRepository = new PrismaCategoriesRepository();
         const getCategoryByUuidUseCase = new GetCategoryByUuidUseCase(categoriesRepository);
 
-        const categories = await getCategoryByUuidUseCase.execute({ uuid });
+        const category = await getCategoryByUuidUseCase.execute({ uuid });
 
-        return reply.status(OK).send(categories);
+        return reply.status(OK).send(category);
     } catch (err) {
         if (err instanceof ResourceNotFoundError) {
             return reply.status(NOT_FOUND).send({ message: err.message });

@@ -40,12 +40,12 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
         });
     }
 
-    async save(category: Prisma.CategoryUncheckedCreateInput, uuid: string): Promise<void> {
+    async save(data: Prisma.CategoryUncheckedCreateInput, uuid: string): Promise<void> {
         await prisma.category.update({
             where: {
                 uuid,
             },
-            data: category,
+            data,
         });
     }
 }

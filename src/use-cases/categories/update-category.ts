@@ -19,7 +19,8 @@ export class UpdateCategoryUseCase {
 
         await this.categoryRepository.save({
             description,
-            slug
+            slug,
+            updatedAt: new Date()
         }, uuid);
     }
 }

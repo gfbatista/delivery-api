@@ -1,0 +1,5 @@
+@startuml Fluxo de busca dos usuários
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/users
+"delivery-db"  -> "delivery-api" : Retorna os usuários [200]
+@enduml

@@ -1,0 +1,5 @@
+@startuml Fluxo de criação do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : POST /v1/users
+"delivery-db"  -> "delivery-api" : Salva o usuário [201]
+@enduml

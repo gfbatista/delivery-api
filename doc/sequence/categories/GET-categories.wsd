@@ -1,4 +1,4 @@
-@startuml Fluxo de busca da categoria
+@startuml Fluxo de busca das categorias
 database "delivery-db"
 "delivery-api" -> "delivery-db" : GET /v1/categories
 "delivery-db"  -> "delivery-api" : Retorna as categorias [200]

@@ -1,0 +1,5 @@
+@startuml Fluxo de busca do usuário por uuid
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/users/:uuid
+"delivery-db"  -> "delivery-api" : Retorna o usuário [200]
+@enduml
