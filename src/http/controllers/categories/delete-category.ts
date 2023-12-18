@@ -18,7 +18,7 @@ export async function deleteCategory(request: FastifyRequest, reply: FastifyRepl
 
         await deleteCategoryUseCase.execute({ uuid });
 
-        return reply.status(NO_CONTENT).send();
+        return reply.status(NO_CONTENT).send();    
     } catch (err) {
         if (err instanceof ResourceNotFoundError) {
             return reply.status(NOT_FOUND).send({ message: err.message });

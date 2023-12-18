@@ -6,6 +6,7 @@ import { env } from './env';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { swaggerOptions, swaggerUiOptions } from './config/swagger';
+import { usersRoutes } from './http/controllers/users/routes';
 
 export const app = fastify();
 
@@ -13,6 +14,7 @@ app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(categoriesRoutes);
+app.register(usersRoutes);
 
 app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {

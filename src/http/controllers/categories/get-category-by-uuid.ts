@@ -18,7 +18,7 @@ export async function getCategoryByUuid(request: FastifyRequest, reply: FastifyR
 
         const category = await getCategoryByUuidUseCase.execute({ uuid });
 
-        return reply.status(OK).send(category);
+        return reply.status(OK).send(category);      
     } catch (err) {
         if (err instanceof ResourceNotFoundError) {
             return reply.status(NOT_FOUND).send({ message: err.message });
