@@ -7,7 +7,7 @@ export const swaggerOptions = {
             description: 'Order Delivery Management',
             version: '1.0.0',
         },
-        host: `localhost: ${env.PORT}`,
+        host: `localhost:${env.PORT}`,
         schemes: ['http', 'https'],
         consumes: ['application/json'],
         produces: ['application/json'],
