@@ -6,16 +6,16 @@ interface GetUserByUuidUseCaseRequest {
   }
 
 export class DeleteUserUseCase {
-    constructor(private userRepository: UsersRepository) { }
+    constructor(private usersRepository: UsersRepository) { }
 
     async execute({ uuid } : GetUserByUuidUseCaseRequest): Promise<void> {
-        const user = await this.userRepository.findByUuid(uuid);
+        const user = await this.usersRepository.findByUuid(uuid);
 
         if (!user){
             throw new ResourceNotFoundError();
         }
 
         user.deletedAt = new Date();
-        this.userRepository.delete(user);
+        this.usersRepository.delete(user);
     }
 }
