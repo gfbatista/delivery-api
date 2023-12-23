@@ -11,11 +11,13 @@ export class PrismaUsersRepository implements UsersRepository {
         return user;
     }
 
-    async findMany(): Promise<User[]> {
+    async findMany(page: number): Promise<User[]> {
         const users = await prisma.user.findMany({
             where: {
                 deletedAt: null
             },
+            skip: (page - 1) * 10,
+            take: 10,
         });
 
         return users;
@@ -27,7 +29,7 @@ export class PrismaUsersRepository implements UsersRepository {
                 uuid,
             },
         });
-        
+
         return user;
     }
 
@@ -55,7 +57,7 @@ export class PrismaUsersRepository implements UsersRepository {
                 email,
             },
         });
-    
+
         return user;
     }
 }

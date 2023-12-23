@@ -17,7 +17,7 @@ describe('Get all Categories Use Case', () => {
             slug: 'Hamburgueria'
         });
 
-        const { categories } = await getCategoriesUseCase.execute();
+        const { categories } = await getCategoriesUseCase.execute(1);
         
         expect(categories).toHaveLength(1);
         expect(categories).toEqual([expect.objectContaining({ description: 'Hamburgueria' })]);

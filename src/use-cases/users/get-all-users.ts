@@ -8,8 +8,8 @@ interface GetUsersUseCaseResponse {
 export class GetAllUsersUseCase {
     constructor(private usersRepository: UsersRepository) { }
 
-    async execute(): Promise<GetUsersUseCaseResponse> {
-        const users = await this.usersRepository.findMany();
+    async execute(page: number): Promise<GetUsersUseCaseResponse> {
+        const users = await this.usersRepository.findMany(page);
 
         return { users };
     }

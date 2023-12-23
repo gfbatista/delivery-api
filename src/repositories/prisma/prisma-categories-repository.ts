@@ -11,11 +11,13 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
         return category;
     }
 
-    async findMany(): Promise<Category[]> {
+    async findMany(page: number): Promise<Category[]> {
         const categories = await prisma.category.findMany({
             where: {
                 deletedAt: null
             },
+            skip: (page - 1) * 10,
+            take: 10,
         });
 
         return categories;
@@ -27,7 +29,7 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
                 uuid,
             },
         });
-        
+
         return category;
     }
 

@@ -21,8 +21,9 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
         return category;
     }
 
-    async findMany() {
-        return this.categories; 
+    async findMany(page: number) {
+        return this.categories
+            .slice((page - 1) * 10, page * 10);
     }
 
     async findByUuid(uuid: string) {

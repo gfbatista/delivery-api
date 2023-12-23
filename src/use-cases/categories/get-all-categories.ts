@@ -8,8 +8,8 @@ interface GetCategoriesUseCaseResponse {
 export class GetAllCategoriesUseCase {
     constructor(private categoryRepository: CategoriesRepository) { }
 
-    async execute(): Promise<GetCategoriesUseCaseResponse> {
-        const categories = await this.categoryRepository.findMany();
+    async execute(page: number): Promise<GetCategoriesUseCaseResponse> {
+        const categories = await this.categoryRepository.findMany(page);
 
         return { categories };
     }

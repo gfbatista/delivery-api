@@ -20,7 +20,7 @@ describe('Get all Users Use Case', () => {
             longitude: -47.6808633
         });
 
-        const { users } = await getAllUsersUseCase.execute();
+        const { users } = await getAllUsersUseCase.execute(1);
 
         expect(users).toHaveLength(1);
         expect(users).toEqual([expect.objectContaining({ name: 'Gilberto Ferrari' })]);

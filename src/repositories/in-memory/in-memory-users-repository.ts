@@ -24,8 +24,9 @@ export class InMemoryUsersRepository implements UsersRepository {
         return user;
     }
 
-    async findMany() {
-        return this.users;
+    async findMany(page: number) {
+        return this.users
+            .slice((page - 1) * 10, page * 10);
     }
 
     async findByUuid(uuid: string) {
@@ -68,13 +69,13 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     async findByEmail(email: string) {
         const user = this.users.find((item) => item.email === email);
-    
+
         if (!user) {
             return null;
         }
         return user;
     }
-    
+
 }
 
 
