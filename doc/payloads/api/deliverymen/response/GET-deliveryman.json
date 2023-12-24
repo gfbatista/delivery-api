@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "uuid": "77c7fdbb-1a41-474f-986d-d39fc47d9715",
+        "name": "Gilberto Ferrari",
+        "driversLicense": "03968876809",
+        "company": "Zap Entrega",
+        "street": "Rua Chile",
+        "city": "Franca",
+        "district": "Jardim Consolação",
+        "state": "São Paulo",
+        "number": "501",
+        "zipcode": "14403-000",
+        "createdAt": "2023-12-23 19:31:11",
+        "updatedAt": "2023-12-23 19:31:11",
+        "deletedAt": null
+    },
+    {
+        "id": 1,
+        "uuid": "4e29749d-287b-4794-b02e-c15b05597c06",
+        "name": "José da Silva",
+        "driversLicense": "03988432866",
+        "company": "Autônomo",
+        "street": "Rua do Sol",
+        "city": "Franca",
+        "district": "Parque Castelo",
+        "state": "São Paulo",
+        "number": "999",
+        "zipcode": "14403-000",
+        "createdAt": "2023-12-23 12:44:11",
+        "updatedAt": "2023-12-23 12:44:11",
+        "deletedAt": null
+    }
+]

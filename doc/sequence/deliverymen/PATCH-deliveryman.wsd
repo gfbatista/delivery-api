@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração do entregador
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PATCH /v1/deliverymen/:uuid
+"delivery-db"  -> "delivery-api" : Altera o entregador [204]
+@enduml

@@ -1,0 +1,5 @@
+@startuml Fluxo de criação do entregador
+database "delivery-db"
+"delivery-api" -> "delivery-db" : POST /v1/deliverymen
+"delivery-db"  -> "delivery-api" : Salva o entregador [201]
+@enduml

@@ -1,0 +1,5 @@
+@startuml Fluxo de busca dos entregadores
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/deliverymen
+"delivery-db"  -> "delivery-api" : Retorna os entregadores [200]
+@enduml

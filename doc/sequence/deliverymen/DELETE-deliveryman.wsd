@@ -1,0 +1,5 @@
+@startuml Fluxo de deleção do entregador
+database "delivery-db"
+"delivery-api" -> "delivery-db" : DELETE /v1/deliverymen/:uuid
+"delivery-db"  -> "delivery-api" : Deleta o entregador [204]
+@enduml

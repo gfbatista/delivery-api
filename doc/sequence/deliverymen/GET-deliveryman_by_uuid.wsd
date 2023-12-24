@@ -1,0 +1,5 @@
+@startuml Fluxo de busca do entregador por uuid
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/deliverymen/:uuid
+"delivery-db"  -> "delivery-api" : Retorna o entregador [200]
+@enduml
