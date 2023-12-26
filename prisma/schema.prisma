@@ -61,13 +61,14 @@ model Deliveryman {
   id             Int       @id @default(autoincrement())
   uuid           String    @unique @default(uuid())
   name           String
-  driversLicense String    @map("drivers_license")
+  driversLicense String    @unique @map("drivers_license")
   company        String
+  phone          String
   street         String
   city           String
   district       String
   state          String
-  number         String?
+  number         Int?
   zipcode        String?
   createdAt      DateTime  @default(now()) @map("created_at")
   updatedAt      DateTime  @default(now()) @map("updated_at")
