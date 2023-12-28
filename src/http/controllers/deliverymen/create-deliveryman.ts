@@ -17,7 +17,6 @@ export async function createDeliveryman(request: FastifyRequest, reply: FastifyR
         state: z.string(),
         number: z.number().optional(),
         zipcode: z.string().length(9).optional(),
-        
     });
 
     const { name, driversLicense, company, phone, street, city, district, state, number, zipcode } =
