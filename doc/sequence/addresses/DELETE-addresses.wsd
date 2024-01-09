@@ -1,0 +1,5 @@
+@startuml Fluxo de deleção do endereço de usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : DELETE /v1/addresses/:uuid
+"delivery-db"  -> "delivery-api" : Deleta o endereco [204]
+@enduml

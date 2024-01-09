@@ -1,0 +1,5 @@
+@startuml Fluxo de criação do endereço de usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : POST /v1/addresses/:uuid
+"delivery-db"  -> "delivery-api" : Salva o endereço [201]
+@enduml

@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração do endereço de usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PATCH /v1/addresses/:uuid
+"delivery-db"  -> "delivery-api" : Altera o endereço [204]
+@enduml

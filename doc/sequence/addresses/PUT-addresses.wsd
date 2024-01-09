@@ -1,0 +1,5 @@
+@startuml Fluxo de inativação do endereço de usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PUT /v1/addresses/:uuid/primary
+"delivery-db"  -> "delivery-api" : Inativa o endereco [204]
+@enduml

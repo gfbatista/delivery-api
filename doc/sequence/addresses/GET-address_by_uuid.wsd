@@ -1,0 +1,5 @@
+@startuml Fluxo de busca do endereço do usuário por uuid
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/addresses/:uuid
+"delivery-db"  -> "delivery-api" : Retorna o endereço [200]
+@enduml

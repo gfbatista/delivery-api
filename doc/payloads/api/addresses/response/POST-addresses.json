@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "uuid": "0a958dbd-3771-4a89-aaef-a866ee7cc828",
+    "user": {
+        "id": 1,
+        "uuid": "2ed29b2d-3ae5-4389-b6ae-5e4bcaec5fd7"
+    },
+    "street": "Rua da Esperança",
+    "city": "Franca",
+    "district": "Parque Castelo",
+    "state": "SP",
+    "number": "601",
+    "zipcode": "14403-000",
+    "latitude": "20.53657331752782",
+    "longitude": "47.36131420453724",
+    "primary": true
+}
