@@ -9,10 +9,10 @@
     "city": "Franca",
     "district": "Parque Castelo",
     "state": "SP",
-    "number": "601",
+    "number": 601,
     "zipcode": "14403-000",
-    "latitude": "20.53657331752782",
-    "longitude": "47.36131420453724",
+    "latitude": -21.0460305,
+    "longitude": -47.6808633,
     "primary": true,
     "created_at": "2023-08-28 13:44:51",
     "deleted_at": null

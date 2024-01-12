@@ -9,7 +9,26 @@
         "longitude": -47.6808633,
         "createdAt": "2023-12-12 13:44:51",
         "updatedAt": "2023-12-12 13:44:51",
-        "deletedAt": null
+        "deletedAt": null,
+        "addresses": [
+            {
+                "id": 1,
+                "uuid": "72680edf-9115-4fc8-aded-340475cc2f4c",
+                "userId": 1,
+                "street": "Rua da Esperança",
+                "city": "Franca",
+                "district": "Parque Castelo",
+                "state": "SP",
+                "number": 601,
+                "zipcode": "14403-000",
+                "latitude": "-21.0460305",
+                "longitude": "-47.6808633",
+                "primary": true,
+                "createdAt": "2024-01-09T19:06:51.434Z",
+                "updatedAt": "2024-01-09T19:06:51.434Z",
+                "deletedAt": null
+            }
+        ]
     },
     {
         "id": 2,
@@ -21,6 +40,25 @@
         "longitude": -47.6808633,
         "createdAt": "2023-12-11 13:31:51",
         "updatedAt": "2023-12-11 13:31:51",
-        "deletedAt": null
+        "deletedAt": null,
+        "addresses": [
+            {
+                "id": 2,
+                "uuid": "68f0a47e-26cc-467e-9617-89c27a4425c6",
+                "userId": 2,
+                "street": "Rua da Esperança",
+                "city": "Franca",
+                "district": "Parque Castelo",
+                "state": "SP",
+                "number": 991,
+                "zipcode": "14405-000",
+                "latitude": "-21.0460305",
+                "longitude": "-47.6808633",
+                "primary": true,
+                "createdAt": "2024-01-09T19:06:51.434Z",
+                "updatedAt": "2024-01-09T19:06:51.434Z",
+                "deletedAt": null
+            }
+        ]
     }
 ]

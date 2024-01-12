@@ -13,6 +13,9 @@ export class PrismaUsersRepository implements UsersRepository {
 
     async findMany(page: number): Promise<User[]> {
         const users = await prisma.user.findMany({
+            include: {
+                addresses: true,
+            },
             where: {
                 deletedAt: null
             },
