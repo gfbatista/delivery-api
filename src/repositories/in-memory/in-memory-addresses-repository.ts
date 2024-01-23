@@ -21,7 +21,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
             createdAt: new Date(),
             updatedAt: new Date(),
             deletedAt: null,
-            primary: true
+            primary: data.primary ?? true
         };
 
         this.addresses.push(address);
@@ -45,6 +45,14 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         }
 
         return address;
+    }
+
+    async delete(address: Address) {
+        const addressIndex = this.addresses.findIndex((item) => item.id === address.id);
+
+        if (addressIndex >= 0) {
+            this.addresses[addressIndex] = address;
+        }
     }
 }
 

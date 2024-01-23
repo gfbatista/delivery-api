@@ -31,4 +31,13 @@ export class PrismaAddressesRepository implements AddressesRepository {
 
         return address;
     }
+
+    async delete(address: Address): Promise<void> {
+        await prisma.address.update({
+            where: {
+                id: address.id,
+            },
+            data: address,
+        });
+    }
 }
