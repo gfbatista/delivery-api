@@ -10,7 +10,8 @@
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest --dir src/use-cases",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "sonar:scanner": "sonar-scanner"
   },
   "keywords": [],
   "repository": "https://github.com/gfbatista/delivery-api",
@@ -25,6 +26,7 @@
     "@vitest/coverage-v8": "0.34.6",
     "eslint": "8.48.0",
     "prisma": "4.15.0",
+    "sonarqube-scanner": "3.3.0",
     "supertest": "6.3.3",
     "tsup": "6.7.0",
     "tsx": "3.12.7",
