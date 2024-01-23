@@ -16,8 +16,8 @@ export class InMemoryAddressesRepository implements AddressesRepository {
             state: data.state,
             number: data.number ?? null,
             zipcode: data.zipcode ?? null,
-            latitude: new Prisma.Decimal(data.latitude.toString()),
-            longitude: new Prisma.Decimal(data.longitude.toString()),
+            latitude: new Prisma.Decimal(String(data.latitude)),
+            longitude: new Prisma.Decimal(String(data.longitude)),
             createdAt: new Date(),
             updatedAt: new Date(),
             deletedAt: null,
@@ -35,6 +35,16 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         addresses.forEach(address => {
             address.primary = false;
         });
+    }
+
+    async findByUuid(uuid: string): Promise<Address | null> {
+        const address = this.addresses.find((address) => address.uuid === uuid);
+
+        if (!address) {
+            return null;
+        }
+
+        return address;
     }
 }
 

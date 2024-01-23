@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Address, Prisma } from '@prisma/client';
 import { prisma } from '@/config/prisma';
 import { AddressesRepository } from '../addresses-repository';
 
@@ -20,5 +20,15 @@ export class PrismaAddressesRepository implements AddressesRepository {
                 primary: false
             },
         });
+    }
+
+    async findByUuid(uuid: string): Promise<Address | null> {
+        const address = await prisma.address.findUnique({
+            where: {
+                uuid,
+            },
+        });
+
+        return address;
     }
 }
