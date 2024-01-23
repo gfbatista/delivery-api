@@ -30,6 +30,9 @@ describe('Update User Use Case', () => {
             latitude: -21.0460305,
             longitude: -47.6808633
         },);
+
+        const user = await usersRepository.findByEmail('gilbertobatista@email.com');
+        expect(user?.name).toEqual('Gilberto Batista');
     });
 
     it('should not be able to update a user with wrong uuid', async () => {

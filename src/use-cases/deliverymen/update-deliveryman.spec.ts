@@ -41,6 +41,42 @@ describe('Update Deliveryman Use Case', () => {
             number: 601,
             zipcode: '14410-000'
         },);
+
+        const deliveryman = await deliverymenRepository.findByDriversLicense('03968876810');
+
+        expect(deliveryman?.driversLicense).toEqual('03968876810');
+        expect(deliveryman?.company).toEqual('Particular');
+    });
+
+    it('should to update a deliveryman without number and zipcode', async () => {
+        await deliverymenRepository.create({
+            uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
+            name: 'Gilberto Ferrari',
+            driversLicense: '03968876809',
+            company: 'Zap Entrega',
+            phone: '16990000000',
+            street: 'Rua Chile',
+            city: 'Franca',
+            district: 'Jardim Consolação',
+            state: 'São Paulo'
+        });
+
+        await updateDeliverymanUseCase.execute({
+            uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
+            name: 'Gilberto Batista',
+            driversLicense: '03968876810',
+            company: 'Particular',
+            phone: '16990000000',
+            street: 'Rua São Paulo',
+            city: 'Franca',
+            district: 'Jardim Consolação',
+            state: 'São Paulo'
+        },);
+
+        const deliveryman = await deliverymenRepository.findByDriversLicense('03968876810');
+
+        expect(deliveryman?.driversLicense).toEqual('03968876810');
+        expect(deliveryman?.company).toEqual('Particular');
     });
 
     it('should not be able to update a deliveryman with wrong uuid', async () => {

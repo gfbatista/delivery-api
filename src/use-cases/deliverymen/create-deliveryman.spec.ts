@@ -30,6 +30,22 @@ describe('Create Deliveryman Use Case', () => {
         expect(deliveryman.driversLicense).toEqual(expect.any(String));
     });
 
+    it('should to create a deliveryman without number and zipcode', async () => {
+        const { deliveryman } = await createDeliverymanUseCase.execute({
+            name: 'Gilberto Ferrari',
+            driversLicense: '03968876809',
+            company: 'Zap Entrega',
+            phone: '16990000000',
+            street: 'Rua Chile',
+            city: 'Franca',
+            district: 'Jardim Consolação',
+            state: 'São Paulo'
+        });
+
+        expect(deliveryman.name).toEqual(expect.any(String));
+        expect(deliveryman.driversLicense).toEqual(expect.any(String));
+    });
+
     it('should not be able to create a deliveryman with same drivers license', async () => {
         await createDeliverymanUseCase.execute({
             name: 'Gilberto Ferrari',

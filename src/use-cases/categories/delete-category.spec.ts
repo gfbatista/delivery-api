@@ -6,7 +6,7 @@ import { DeleteCategoryUseCase } from './delete-category';
 let categoriesRepository: InMemoryCategoriesRepository;
 let deleteCategoryUseCase: DeleteCategoryUseCase;
 
-describe('Delete Category Use Case', () => {
+describe('Delete Category Use Case', async () => {
     beforeEach(() => {
         categoriesRepository = new InMemoryCategoriesRepository();
         deleteCategoryUseCase = new DeleteCategoryUseCase(categoriesRepository);
@@ -20,6 +20,9 @@ describe('Delete Category Use Case', () => {
         });
 
         await deleteCategoryUseCase.execute({ uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94' });
+
+        const category = await categoriesRepository.findByUuid('00a860ab-eea8-4278-a7e2-450ddb82ea94');
+        expect(category?.deletedAt).toEqual(expect.any(Date));
     });
 
     it('should not be able to delete a category with wrong uuid', async () => {

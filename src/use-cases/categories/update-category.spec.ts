@@ -6,7 +6,7 @@ import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 let categoriesRepository: InMemoryCategoriesRepository;
 let updateCategoryUseCase: UpdateCategoryUseCase;
 
-describe('Update Category Use Case', () => {
+describe('Update Category Use Case', async () => {
     beforeEach(() => {
         categoriesRepository = new InMemoryCategoriesRepository();
         updateCategoryUseCase = new UpdateCategoryUseCase(categoriesRepository);
@@ -24,6 +24,11 @@ describe('Update Category Use Case', () => {
             description: 'Comida Japonesa',
             slug: 'Japonesa'
         },);
+
+        const categories = await categoriesRepository.findMany(1);
+        expect(categories).toEqual([
+            expect.objectContaining({ description: 'Comida Japonesa' }),
+        ]);
     });
 
     it('should not be able to update a category with wrong uuid', async () => {

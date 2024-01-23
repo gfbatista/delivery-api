@@ -28,6 +28,9 @@ describe('Delete Deliveryman Use Case', () => {
         });
 
         await deleteDeliverymanUseCase.execute({ uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94' });
+
+        const deliveryman = await deliverymenRepository.findByUuid('00a860ab-eea8-4278-a7e2-450ddb82ea94');
+        expect(deliveryman?.deletedAt).toEqual(expect.any(Date));
     });
 
     it('should not be able to delete a deliveryman with wrong uuid', async () => {

@@ -6,7 +6,7 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 let usersRepository: InMemoryUsersRepository;
 let deleteUserUseCase: DeleteUserUseCase;
 
-describe('Delete User Use Case', () => {
+describe('Delete User Use Case', async () => {
     beforeEach(() => {
         usersRepository = new InMemoryUsersRepository();
         deleteUserUseCase = new DeleteUserUseCase(usersRepository);
@@ -23,6 +23,9 @@ describe('Delete User Use Case', () => {
         });
 
         await deleteUserUseCase.execute({ uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94' });
+
+        const user = await usersRepository.findByEmail('gilberto@email.com');
+        expect(user?.name).toEqual('Gilberto Ferrari');
     });
 
     it('should not be able to delete a user with wrong uuid', async () => {
