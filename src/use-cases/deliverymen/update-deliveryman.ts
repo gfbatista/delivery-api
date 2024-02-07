@@ -43,7 +43,6 @@ export class UpdateDeliverymanUseCase {
             state,
             number,
             zipcode,
-            updatedAt: new Date()
         }, uuid);
     }
 }

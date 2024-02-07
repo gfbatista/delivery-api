@@ -26,7 +26,6 @@ export class UpdateUserUseCase {
             password, 
             latitude, 
             longitude,
-            updatedAt: new Date()
         }, uuid);
     }
 }

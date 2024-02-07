@@ -42,7 +42,6 @@ export class UpdateAddressUseCase {
             zipcode,
             latitude,
             longitude,
-            updatedAt: new Date()
         }, uuid);
     }
 }
