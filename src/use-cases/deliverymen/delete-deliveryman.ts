@@ -1,14 +1,14 @@
 import { DeliverymenRepository } from '@/repositories/deliverymen-repository';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
-interface GetDeliverymanByUuidUseCaseRequest {
+interface DeleteDeliverymanUseCaseRequest {
     uuid: string
 }
 
 export class DeleteDeliverymanUseCase {
     constructor(private deliverymenRepository: DeliverymenRepository) { }
 
-    async execute({ uuid }: GetDeliverymanByUuidUseCaseRequest): Promise<void> {
+    async execute({ uuid }: DeleteDeliverymanUseCaseRequest): Promise<void> {
         const deliveryman = await this.deliverymenRepository.findByUuid(uuid);
 
         if (!deliveryman) {

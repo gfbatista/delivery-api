@@ -2,14 +2,14 @@ import { AddressesRepository } from '@/repositories/addresses-repository';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { AddressCannotBeDeletedError } from '../errors/address-cannot-be-deleted-error';
 
-interface GetUserByUuidUseCaseRequest {
+interface DeleteAddressUseCaseRequest {
     uuid: string
   }
 
 export class DeleteAddressUseCase {
     constructor(private addressesRepository: AddressesRepository) { }
 
-    async execute({ uuid } : GetUserByUuidUseCaseRequest): Promise<void> {
+    async execute({ uuid } : DeleteAddressUseCaseRequest): Promise<void> {
         const address = await this.addressesRepository.findByUuid(uuid);
 
         if (!address){

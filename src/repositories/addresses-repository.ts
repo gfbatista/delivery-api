@@ -5,4 +5,5 @@ export interface AddressesRepository {
     updatePrimaryAddressToFalse(userId: number): Promise<void>
     findByUuid(uuid: string): Promise<Address | null>
     delete(address: Address): Promise<void>
+    save(data: Prisma.AddressUncheckedCreateInput, uuid: string): Promise<void>
 }

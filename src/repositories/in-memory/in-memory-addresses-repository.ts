@@ -54,6 +54,31 @@ export class InMemoryAddressesRepository implements AddressesRepository {
             this.addresses[addressIndex] = address;
         }
     }
+
+    async save(data: Prisma.AddressUncheckedCreateInput, uuid: string) {
+        const addressIndex = this.addresses.findIndex((item) => item.uuid === uuid);
+
+        if (addressIndex >= 0) {
+            const address = {
+                id: 1,
+                uuid: data.uuid ?? randomUUID(),
+                userId: data.userId,
+                street: data.street,
+                city: data.city,
+                district: data.district,
+                state: data.state,
+                number: data.number ?? null,
+                zipcode: data.zipcode ?? null,
+                latitude: new Prisma.Decimal(String(data.latitude)),
+                longitude: new Prisma.Decimal(String(data.longitude)),
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                deletedAt: null,
+                primary: data.primary ?? true
+            };
+            this.addresses[addressIndex] = address;
+        }
+    }
 }
 
 

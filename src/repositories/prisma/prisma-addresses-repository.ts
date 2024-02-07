@@ -22,6 +22,15 @@ export class PrismaAddressesRepository implements AddressesRepository {
         });
     }
 
+    async save(data: Prisma.AddressUncheckedCreateInput, uuid: string): Promise<void> {
+        await prisma.address.update({
+            where: {
+                uuid,
+            },
+            data,
+        });
+    }
+
     async findByUuid(uuid: string): Promise<Address | null> {
         const address = await prisma.address.findUnique({
             where: {

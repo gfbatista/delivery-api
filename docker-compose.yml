@@ -10,3 +10,10 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=a
       - MYSQL_DATABASE=delivery-db
+  sonarqube:
+    image: sonarqube
+    restart: unless-stopped
+    expose:
+      - 9000
+    ports:
+      - "0.0.0.0:9000:9000"
