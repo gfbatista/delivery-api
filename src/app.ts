@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import fastifyHealthcheck from 'fastify-healthcheck';
 import { ZodError } from 'zod';
 import { categoriesRoutes } from './http/controllers/categories/routes';
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST } from 'http-status';
@@ -9,8 +10,16 @@ import { swaggerOptions, swaggerUiOptions } from './config/swagger';
 import { usersRoutes } from './http/controllers/users/routes';
 import { deliverymenRoutes } from './http/controllers/deliverymen/routes';
 import { addressesRoutes } from './http/controllers/addresses/routes';
+import fastifyJwt from '@fastify/jwt';
 
 export const app = fastify();
+
+app.register(fastifyJwt, {
+    secret: env.JWT_SECRET,
+    sign: {
+        expiresIn: '1d',
+    },
+});
 
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUiOptions);
@@ -19,6 +28,10 @@ app.register(categoriesRoutes);
 app.register(usersRoutes);
 app.register(deliverymenRoutes);
 app.register(addressesRoutes);
+
+app.register(fastifyHealthcheck, {
+    healthcheckUrl: '/health',
+});
 
 app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {

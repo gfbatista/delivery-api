@@ -7,4 +7,5 @@ export interface UsersRepository {
     delete(category: User): Promise<void>
     save(data: Prisma.UserUncheckedCreateInput, uuid: string): Promise<void>
     findByEmail(email: string): Promise<User | null>
+    findById(id: number): Promise<User | null>
 }
