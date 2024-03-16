@@ -9,6 +9,7 @@ export async function createDeliveryman(request: FastifyRequest, reply: FastifyR
     const createDeliverymanBodySchema = z.object({
         name: z.string().min(3),
         driversLicense: z.string().length(11),
+        password: z.string(),
         company: z.string(),
         phone: z.string(),
         street: z.string(),
@@ -19,7 +20,7 @@ export async function createDeliveryman(request: FastifyRequest, reply: FastifyR
         zipcode: z.string().length(9).optional(),
     });
 
-    const { name, driversLicense, company, phone, street, city, district, state, number, zipcode } =
+    const { name, driversLicense, password, company, phone, street, city, district, state, number, zipcode } =
         createDeliverymanBodySchema.parse(request.body);
 
     try {
@@ -27,7 +28,7 @@ export async function createDeliveryman(request: FastifyRequest, reply: FastifyR
         const createDeliverymanUseCase = new CreateDeliverymanUseCase(prismaDeliverymenRepository);
 
         const { deliveryman } = await createDeliverymanUseCase.execute({
-            name, driversLicense, company, phone, street, city, district, state, number, zipcode
+            name, driversLicense, password, company, phone, street, city, district, state, number, zipcode
         });
 
         return reply.status(CREATED).send(deliveryman);

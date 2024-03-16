@@ -16,6 +16,7 @@ describe('Create Deliveryman Use Case', () => {
         const { deliveryman } = await createDeliverymanUseCase.execute({
             name: 'Gilberto Ferrari',
             driversLicense: '03968876809',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             company: 'Zap Entrega',
             phone: '16990000000',
             street: 'Rua Chile',
@@ -34,6 +35,7 @@ describe('Create Deliveryman Use Case', () => {
         const { deliveryman } = await createDeliverymanUseCase.execute({
             name: 'Gilberto Ferrari',
             driversLicense: '03968876809',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             company: 'Zap Entrega',
             phone: '16990000000',
             street: 'Rua Chile',
@@ -50,6 +52,7 @@ describe('Create Deliveryman Use Case', () => {
         await createDeliverymanUseCase.execute({
             name: 'Gilberto Ferrari',
             driversLicense: '03968876809',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             company: 'Zap Entrega',
             phone: '16990000000',
             street: 'Rua Chile',
@@ -64,6 +67,7 @@ describe('Create Deliveryman Use Case', () => {
             createDeliverymanUseCase.execute({
                 name: 'José Alves',
                 driversLicense: '03968876809',
+                password: '99A29DC8105FD2FA39D8CDC04733938D',
                 company: 'Particular',
                 phone: '16990000100',
                 street: 'Rua A',

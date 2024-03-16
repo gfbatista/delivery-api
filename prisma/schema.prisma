@@ -63,6 +63,7 @@ model Deliveryman {
   uuid           String    @unique @default(uuid())
   name           String
   driversLicense String    @unique @map("drivers_license")
+  password       String
   company        String
   phone          String
   street         String

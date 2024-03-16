@@ -8,7 +8,7 @@ CREATE TABLE `users` (
     `latitude` DECIMAL(65, 30) NOT NULL,
     `longitude` DECIMAL(65, 30) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NULL,
     `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `users_uuid_key`(`uuid`),
@@ -23,7 +23,7 @@ CREATE TABLE `categories` (
     `description` VARCHAR(191) NOT NULL,
     `slug` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NULL,
     `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `categories_uuid_key`(`uuid`),
@@ -45,7 +45,7 @@ CREATE TABLE `addresses` (
     `longitude` DECIMAL(65, 30) NOT NULL,
     `primary` BOOLEAN NOT NULL DEFAULT true,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NULL,
     `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `addresses_uuid_key`(`uuid`),
@@ -58,6 +58,7 @@ CREATE TABLE `deliverymen` (
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `drivers_license` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
     `company` VARCHAR(191) NOT NULL,
     `phone` VARCHAR(191) NOT NULL,
     `street` VARCHAR(191) NOT NULL,
@@ -67,7 +68,7 @@ CREATE TABLE `deliverymen` (
     `number` INTEGER NULL,
     `zipcode` VARCHAR(191) NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NULL,
     `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `deliverymen_uuid_key`(`uuid`),
