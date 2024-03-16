@@ -9,8 +9,8 @@ import { profile } from './profile';
 import { verifyJwt } from '@/http/middlewares/verify-jwt';
 
 export async function usersRoutes(app: FastifyInstance) {
-    app.post('/sessions', authenticate);
-    app.get('/me', {onRequest: [verifyJwt]}, profile);
+    app.post('/users/sessions', authenticate);
+    app.get('/users/me', {onRequest: [verifyJwt]}, profile);
 
     app.post('/users', createUser);
     app.get('/users', getAllUsers);
