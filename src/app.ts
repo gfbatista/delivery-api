@@ -11,6 +11,7 @@ import { usersRoutes } from './http/controllers/users/routes';
 import { deliverymenRoutes } from './http/controllers/deliverymen/routes';
 import { addressesRoutes } from './http/controllers/addresses/routes';
 import fastifyJwt from '@fastify/jwt';
+import { fromZodError } from 'zod-validation-error';
 
 export const app = fastify();
 
@@ -37,7 +38,7 @@ app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {
         return reply
             .status(BAD_REQUEST)
-            .send({ message: 'Validation error.', issues: error.format() });
+            .send({ message: 'Validation error.', issues: fromZodError(error).details });
     }
 
     if (env.NODE_ENV !== 'production') {

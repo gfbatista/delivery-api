@@ -23,7 +23,7 @@ describe('Get User Profile Use Case', () => {
         });
 
         const { user } = await getUserProfileUseCase.execute({
-            userId: createdUser.id,
+            userUuid: createdUser.uuid,
         });
 
         expect(user.name).toEqual('Gilberto Ferrari');
@@ -32,7 +32,7 @@ describe('Get User Profile Use Case', () => {
     it('should not be able to get user profile with wrong id', async () => {
         await expect(() =>
             getUserProfileUseCase.execute({
-                userId: 999,
+                userUuid: '8598136d-53f7-48eb-a79f-aa27705a84b3',
             }),
         ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });
