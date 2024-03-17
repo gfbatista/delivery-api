@@ -2,13 +2,11 @@ import { NOT_FOUND, NO_CONTENT } from 'http-status';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository';
 import { UpdateAddressUseCase } from '@/use-cases/addresses/update-address';
 import { PrismaAddressesRepository } from '@/repositories/prisma/prisma-addresses-repository';
 
 export async function updateAddress(request: FastifyRequest, reply: FastifyReply) {
     const updateAddressBodySchema = z.object({
-        userUuid: z.string(),
         street: z.string(),
         city: z.string(),
         district: z.string(),
@@ -23,7 +21,9 @@ export async function updateAddress(request: FastifyRequest, reply: FastifyReply
         }),
     });
 
-    const { userUuid, street, city, district, state, number, zipcode, latitude, longitude } =
+    const userId = Number(request.user.sub);
+
+    const { street, city, district, state, number, zipcode, latitude, longitude } =
         updateAddressBodySchema.parse(request.body);
 
     const updateAddressParamsSchema = z.object({
@@ -34,11 +34,10 @@ export async function updateAddress(request: FastifyRequest, reply: FastifyReply
 
     try {
         const addressesRepository = new PrismaAddressesRepository();
-        const usersRepository = new PrismaUsersRepository();
-        const updateAddressUseCase = new UpdateAddressUseCase(addressesRepository, usersRepository);
+        const updateAddressUseCase = new UpdateAddressUseCase(addressesRepository);
 
         await updateAddressUseCase.execute({
-            userUuid,
+            userId,
             uuid,
             street, 
             city, 

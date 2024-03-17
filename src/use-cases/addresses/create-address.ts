@@ -1,9 +1,7 @@
-import { UsersRepository } from '@/repositories/users-repository';
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { AddressesRepository } from '@/repositories/addresses-repository';
 
 interface CreateAddressRequest {
-    uuid: string
+    userId: number
     street: string
     city: string
     district: string
@@ -15,17 +13,11 @@ interface CreateAddressRequest {
 }
 
 export class CreateAddressUseCase {
-    constructor(private addressesRepository: AddressesRepository, private usersRepository: UsersRepository) { }
+    constructor(private addressesRepository: AddressesRepository) { }
 
-    async execute({ street, city, district, state, number, zipcode, latitude, longitude, uuid }: CreateAddressRequest) {
+    async execute({ street, city, district, state, number, zipcode, latitude, longitude, userId }: CreateAddressRequest) {
 
-        const user = await this.usersRepository.findByUuid(uuid);
-
-        if (!user) {
-            throw new ResourceNotFoundError();
-        }
-
-        await this.addressesRepository.updatePrimaryAddressToFalse(user.id);
+        await this.addressesRepository.updatePrimaryAddressToFalse(userId);
 
         const address = await this.addressesRepository.create({
             street,
@@ -36,7 +28,7 @@ export class CreateAddressUseCase {
             zipcode,
             latitude,
             longitude,
-            userId: user.id
+            userId
         });
 
         return { address };

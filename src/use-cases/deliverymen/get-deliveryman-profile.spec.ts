@@ -29,7 +29,7 @@ describe('Get Deliveryman Profile Use Case', () => {
         });
 
         const { deliveryman } = await getDeliverymanProfileUseCase.execute({
-            deliverymanUuid: createdDeliveryman.uuid,
+            deliverymanId: createdDeliveryman.id,
         });
 
         expect(deliveryman.name).toEqual('Gilberto Ferrari');
@@ -38,7 +38,7 @@ describe('Get Deliveryman Profile Use Case', () => {
     it('should not be able to get deliveryman profile with wrong id', async () => {
         await expect(() =>
             getDeliverymanProfileUseCase.execute({
-                deliverymanUuid: '8598136d-53f7-48eb-a79f-aa27705a84b3',
+                deliverymanId: 999,
             }),
         ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });

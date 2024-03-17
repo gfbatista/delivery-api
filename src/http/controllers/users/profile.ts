@@ -7,7 +7,7 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
     const getUserProfileUseCase = new GetUserProfileUseCase(usersRepository);
 
     const { user } = await getUserProfileUseCase.execute({
-        userUuid: request.user.sub,
+        userId: Number(request.user.sub),
     });
 
     return reply.status(200).send({

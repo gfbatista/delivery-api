@@ -7,4 +7,5 @@ export interface DeliverymenRepository {
     delete(category: Deliveryman): Promise<void>
     save(data: Prisma.DeliverymanUncheckedCreateInput, uuid: string): Promise<void>
     findByDriversLicense(driversLicense: string): Promise<Deliveryman | null>
+    findById(id: number): Promise<Deliveryman | null>
 }

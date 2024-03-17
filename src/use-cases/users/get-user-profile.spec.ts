@@ -23,7 +23,7 @@ describe('Get User Profile Use Case', () => {
         });
 
         const { user } = await getUserProfileUseCase.execute({
-            userUuid: createdUser.uuid,
+            userId: createdUser.id,
         });
 
         expect(user.name).toEqual('Gilberto Ferrari');

@@ -3,7 +3,7 @@ import { Deliveryman } from '@prisma/client';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
 interface GetDeliverymanProfileUseCaseRequest {
-  deliverymanUuid: string
+  deliverymanId: number
 }
 
 interface GetDeliverymanProfileUseCaseResponse {
@@ -14,9 +14,9 @@ export class GetDeliverymanProfileUseCase {
     constructor(private deliverymenRepository: DeliverymenRepository) { }
 
     async execute({
-        deliverymanUuid,
+        deliverymanId,
     }: GetDeliverymanProfileUseCaseRequest): Promise<GetDeliverymanProfileUseCaseResponse> {
-        const deliveryman = await this.deliverymenRepository.findByUuid(deliverymanUuid);
+        const deliveryman = await this.deliverymenRepository.findById(deliverymanId);
 
         if (!deliveryman) {
             throw new ResourceNotFoundError();

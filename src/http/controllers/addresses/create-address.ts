@@ -3,7 +3,6 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { PrismaAddressesRepository } from '@/repositories/prisma/prisma-addresses-repository';
 import { CreateAddressUseCase } from '@/use-cases/addresses/create-address';
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository';
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
 
 export async function createAddress(request: FastifyRequest, reply: FastifyReply) {
@@ -22,23 +21,18 @@ export async function createAddress(request: FastifyRequest, reply: FastifyReply
         }),
     });
 
+    const userId = Number(request.user.sub);
+
     const { street, city, district, state, number, zipcode, latitude, longitude } =
         createAddressBodySchema.parse(request.body);
 
-    const updateAddressParamsSchema = z.object({
-        uuid: z.string().uuid(),
-    });
-
-    const { uuid } = updateAddressParamsSchema.parse(request.params);
-
     try {
         const addressesRepository = new PrismaAddressesRepository();
-        const usersRepository = new PrismaUsersRepository();
 
-        const createAddressUseCase = new CreateAddressUseCase(addressesRepository, usersRepository);
+        const createAddressUseCase = new CreateAddressUseCase(addressesRepository);
 
         const { address } = await createAddressUseCase.execute({
-            uuid,
+            userId,
             street,
             city,
             district,

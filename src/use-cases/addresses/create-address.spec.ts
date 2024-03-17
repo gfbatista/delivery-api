@@ -2,7 +2,6 @@ import { expect, describe, it, beforeEach } from 'vitest';
 import { InMemoryAddressesRepository } from '@/repositories/in-memory/in-memory-addresses-repository';
 import { CreateAddressUseCase } from './create-address';
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
 let addressesRepository: InMemoryAddressesRepository;
 let usersRepository: InMemoryUsersRepository;
@@ -38,7 +37,7 @@ describe('Create Address Use Case', () => {
         });
 
         const { address } = await createAddressUseCase.execute({
-            uuid: '759cafaa-5461-4ba8-9342-d01635c66d66',
+            userId: 1,
             street: 'Rua da Esperança',
             city: 'Franca',
             district: 'Parque Castelo',
@@ -74,7 +73,7 @@ describe('Create Address Use Case', () => {
         });
 
         const { address } = await createAddressUseCase.execute({
-            uuid: '759cafaa-5461-4ba8-9342-d01635c66d66',
+            userId: 1,
             street: 'Rua da Esperança',
             city: 'Franca',
             district: 'Parque Castelo',
@@ -85,21 +84,5 @@ describe('Create Address Use Case', () => {
 
         expect(address.city).toEqual(expect.any(String));
         expect(address.id).toEqual(expect.any(Number));
-    });
-
-    it('should not be able to create a address with wrong user uuid', async () => {
-        await expect(() =>
-            createAddressUseCase.execute({
-                uuid: '759cafaa-5461-4ba8-9342-d01635c66d66',
-                street: 'Rua da Esperança',
-                city: 'Franca',
-                district: 'Parque Castelo',
-                state: 'SP',
-                number: 601,
-                zipcode: '14403-000',
-                latitude: -21.0460305,
-                longitude: -47.6808633
-            },)
-        ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });
 });

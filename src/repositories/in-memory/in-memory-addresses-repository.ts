@@ -79,6 +79,14 @@ export class InMemoryAddressesRepository implements AddressesRepository {
             this.addresses[addressIndex] = address;
         }
     }
+
+    async updatePrimaryAddress(uuid: string, primary: boolean): Promise<void> {
+        const addressIndex = this.addresses.findIndex((item) => item.uuid === uuid);
+
+        if (addressIndex >= 0) {
+            this.addresses[addressIndex].primary = primary;
+        }
+    }
 }
 
 

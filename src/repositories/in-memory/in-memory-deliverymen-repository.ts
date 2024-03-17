@@ -45,6 +45,15 @@ export class InMemoryDeliverymenRepository implements DeliverymenRepository {
         return deliveryman;
     }
 
+    async findById(id: number) {
+        const deliveryman = this.deliverymen.find((item) => item.id === id);
+    
+        if (!deliveryman) {
+            return null;
+        }
+        return deliveryman;
+    }
+
     async save(data: Prisma.DeliverymanUncheckedCreateInput, uuid: string) {
         const deliverymanIndex = this.deliverymen.findIndex((item) => item.uuid === uuid);
 

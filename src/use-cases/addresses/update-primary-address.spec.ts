@@ -1,21 +1,21 @@
 import { describe, it, beforeEach, expect } from 'vitest';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { InMemoryAddressesRepository } from '@/repositories/in-memory/in-memory-addresses-repository';
-import { UpdateAddressUseCase } from './update-address';
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
+import { UpdatePrimaryAddressUseCase } from './update-primary-address';
 
 let addressesRepository: InMemoryAddressesRepository;
 let usersRepository: InMemoryUsersRepository;
-let updateAddressesUseCase: UpdateAddressUseCase;
+let updatePrimaryAddressUseCase: UpdatePrimaryAddressUseCase;
 
-describe('Update Address Use Case', () => {
+describe('Update Primary Address Use Case', () => {
     beforeEach(() => {
         addressesRepository = new InMemoryAddressesRepository();
         usersRepository = new InMemoryUsersRepository();
-        updateAddressesUseCase = new UpdateAddressUseCase(addressesRepository);
+        updatePrimaryAddressUseCase = new UpdatePrimaryAddressUseCase(addressesRepository);
     });
 
-    it('should to update a user address', async () => {
+    it('should to update a user address to primary (false)', async () => {
         await usersRepository.create({
             uuid: '00eebae1-d24e-4089-bc2a-5779a71890a9',
             name: 'Gilberto Ferrari',
@@ -39,37 +39,22 @@ describe('Update Address Use Case', () => {
             longitude: -47.6808633
         });
 
-        await updateAddressesUseCase.execute({
+
+        await updatePrimaryAddressUseCase.execute({
             uuid: '90140f51-2dd3-44f0-894a-aafb5c7c93ec',
-            userId: 1,
-            street: 'Rua da Paz',
-            city: 'Franca',
-            district: 'Centro',
-            state: 'SP',
-            number: 601,
-            zipcode: '14403-000',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            primary: false
         });
 
         const address = await addressesRepository.findByUuid('90140f51-2dd3-44f0-894a-aafb5c7c93ec');
-        expect(address?.street).toEqual('Rua da Paz');
+        expect(address?.primary).toEqual(false);
     });
 
 
-    it('should not be able to update a address with wrong uuid', async () => {
+    it('should not be able to update a user address to primary (false)', async () => {
         await expect(() =>
-            updateAddressesUseCase.execute({
-                uuid: '413d7631-5f48-4ec6-845d-115205f02213',
-                userId: 999,
-                street: 'Rua da Esperança',
-                city: 'Franca',
-                district: 'Parque Castelo',
-                state: 'SP',
-                number: 601,
-                zipcode: '14403-000',
-                latitude: -21.0460305,
-                longitude: -47.6808633
+            updatePrimaryAddressUseCase.execute({
+                uuid: '90140f51-2dd3-44f0-894a-aafb5c7c93dd',
+                primary: false
             },)
         ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });

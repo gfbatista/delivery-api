@@ -7,7 +7,7 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
     const getDeliverymanProfileUseCase = new GetDeliverymanProfileUseCase(deliverymenRepository);
 
     const { deliveryman } = await getDeliverymanProfileUseCase.execute({
-        deliverymanUuid: request.user.sub,
+        deliverymanId: Number(request.user.sub),
     });
 
     return reply.status(200).send({

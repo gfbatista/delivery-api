@@ -3,7 +3,7 @@ import { User } from '@prisma/client';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
 interface GetUserProfileUseCaseRequest {
-  userUuid: string
+  userId: number
 }
 
 interface GetUserProfileUseCaseResponse {
@@ -14,9 +14,9 @@ export class GetUserProfileUseCase {
     constructor(private userRepository: UsersRepository) {}
 
     async execute({
-        userUuid,
+        userId,
     }: GetUserProfileUseCaseRequest): Promise<GetUserProfileUseCaseResponse> {
-        const user = await this.userRepository.findByUuid(userUuid);
+        const user = await this.userRepository.findById(userId);
 
         if (!user) {
             throw new ResourceNotFoundError();

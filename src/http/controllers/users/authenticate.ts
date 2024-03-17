@@ -28,7 +28,7 @@ export async function authenticate(
             {},
             {
                 sign: {
-                    sub: user.uuid,
+                    sub: String(user.id),
                 },
             },
         );

@@ -60,4 +60,14 @@ export class PrismaDeliverymenRepository implements DeliverymenRepository {
 
         return deliveryman;
     }
+
+    async findById(id: number) {
+        const deliveryman = await prisma.deliveryman.findUnique({
+            where: {
+                id,
+            },
+        });
+    
+        return deliveryman;
+    }
 }

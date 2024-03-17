@@ -49,4 +49,15 @@ export class PrismaAddressesRepository implements AddressesRepository {
             data: address,
         });
     }
+
+    async updatePrimaryAddress(uuid: string, primary: boolean): Promise<void> {
+        await prisma.address.update({
+            where: {
+                uuid,
+            },
+            data: {
+                primary
+            },
+        });
+    }
 }
