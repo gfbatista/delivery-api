@@ -11,7 +11,7 @@ describe('Create Address Use Case', () => {
     beforeEach(() => {
         addressesRepository = new InMemoryAddressesRepository();
         usersRepository = new InMemoryUsersRepository();
-        createAddressUseCase = new CreateAddressUseCase(addressesRepository, usersRepository);
+        createAddressUseCase = new CreateAddressUseCase(addressesRepository);
     });
 
     it('should to create a user address', async () => {
@@ -19,9 +19,7 @@ describe('Create Address Use Case', () => {
             uuid: '759cafaa-5461-4ba8-9342-d01635c66d66',
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         });
 
         await addressesRepository.create({
@@ -57,9 +55,7 @@ describe('Create Address Use Case', () => {
             uuid: '759cafaa-5461-4ba8-9342-d01635c66d66',
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         });
 
         await addressesRepository.create({

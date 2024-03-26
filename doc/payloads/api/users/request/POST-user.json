@@ -2,6 +2,14 @@
     "name": "Gilberto Ferrari",
     "email": "gilberto@email.com",
     "password": "99A29DC8105FD2FA39D8CDC04733938D",
-    "latitude": -21.0460305,
-    "longitude": -47.6808633
+    "address": {
+        "street": "Rua da Esperança",
+        "city": "Franca",
+        "district": "Parque Castelo",
+        "state": "SP",
+        "number": 601,
+        "zipcode": "14403-000",
+        "latitude": -21.0460305,
+        "longitude": -47.6808633
+    }
 }

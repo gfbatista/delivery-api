@@ -6,24 +6,7 @@ export class InMemoryDeliverymenRepository implements DeliverymenRepository {
     public deliverymen: Deliveryman[] = [];
 
     async create(data: Prisma.DeliverymanCreateInput) {
-        const deliveryman = {
-            id: 1,
-            uuid: data.uuid ?? randomUUID(),
-            name: data.name,
-            driversLicense: data.driversLicense,
-            password: data.password,
-            company: data.company,
-            phone: data.phone,
-            street: data.street,
-            city: data.city,
-            district: data.district,
-            state: data.state,
-            number: data.number ?? null,
-            zipcode: data.zipcode ?? null,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-        };
+        const deliveryman = this.buildDeliverymanPayload(data);
 
         this.deliverymen.push(deliveryman);
 
@@ -47,7 +30,7 @@ export class InMemoryDeliverymenRepository implements DeliverymenRepository {
 
     async findById(id: number) {
         const deliveryman = this.deliverymen.find((item) => item.id === id);
-    
+
         if (!deliveryman) {
             return null;
         }
@@ -58,24 +41,7 @@ export class InMemoryDeliverymenRepository implements DeliverymenRepository {
         const deliverymanIndex = this.deliverymen.findIndex((item) => item.uuid === uuid);
 
         if (deliverymanIndex >= 0) {
-            const deliveryman = {
-                id: data.id ?? 1,
-                uuid: data.uuid ?? randomUUID(),
-                name: data.name,
-                driversLicense: data.driversLicense,
-                password: data.password,
-                company: data.company,
-                phone: data.phone,
-                street: data.street,
-                city: data.city,
-                district: data.district,
-                state: data.state,
-                number: data.number ?? null,
-                zipcode: data.zipcode ?? null,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                deletedAt: null,
-            };
+            const deliveryman = this.buildDeliverymanPayload(data);
             this.deliverymen[deliverymanIndex] = deliveryman;
         }
     }
@@ -97,6 +63,27 @@ export class InMemoryDeliverymenRepository implements DeliverymenRepository {
         return deliveryman;
     }
 
+    buildDeliverymanPayload(data: Prisma.DeliverymanUncheckedCreateInput) {
+        const deliveryman = {
+            id: data.id ?? 1,
+            uuid: data.uuid ?? randomUUID(),
+            name: data.name,
+            driversLicense: data.driversLicense,
+            password: data.password,
+            company: data.company,
+            phone: data.phone,
+            street: data.street,
+            city: data.city,
+            district: data.district,
+            state: data.state,
+            number: data.number ?? null,
+            zipcode: data.zipcode ?? null,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            deletedAt: null,
+        };
+        return deliveryman;
+    }
 }
 
 

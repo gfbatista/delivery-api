@@ -5,8 +5,6 @@ CREATE TABLE `users` (
     `name` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
-    `latitude` DECIMAL(65, 30) NOT NULL,
-    `longitude` DECIMAL(65, 30) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NULL,
     `deleted_at` DATETIME(3) NULL,

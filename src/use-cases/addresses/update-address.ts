@@ -17,7 +17,7 @@ interface UpdateAddressRequest {
 export class UpdateAddressUseCase {
     constructor(private addressesRepository: AddressesRepository) { }
 
-    async execute({ uuid, primary }: UpdateAddressRequest) {
+    async execute({ uuid, userId, street, city, district, state, number, zipcode, latitude, longitude }: UpdateAddressRequest) {
         const address = await this.addressesRepository.findByUuid(uuid);
 
         if (!address) {
