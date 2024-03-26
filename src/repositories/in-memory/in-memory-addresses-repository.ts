@@ -6,23 +6,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
     public addresses: Address[] = [];
 
     async create(data: Prisma.AddressUncheckedCreateInput) {
-        const address = {
-            id: 1,
-            uuid: data.uuid ?? randomUUID(),
-            userId: data.userId,
-            street: data.street,
-            city: data.city,
-            district: data.district,
-            state: data.state,
-            number: data.number ?? null,
-            zipcode: data.zipcode ?? null,
-            latitude: new Prisma.Decimal(String(data.latitude)),
-            longitude: new Prisma.Decimal(String(data.longitude)),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-            primary: data.primary ?? true
-        };
+        const address = this.buildAddressPayload(data);
 
         this.addresses.push(address);
 
@@ -59,23 +43,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         const addressIndex = this.addresses.findIndex((item) => item.uuid === uuid);
 
         if (addressIndex >= 0) {
-            const address = {
-                id: 1,
-                uuid: data.uuid ?? randomUUID(),
-                userId: data.userId,
-                street: data.street,
-                city: data.city,
-                district: data.district,
-                state: data.state,
-                number: data.number ?? null,
-                zipcode: data.zipcode ?? null,
-                latitude: new Prisma.Decimal(String(data.latitude)),
-                longitude: new Prisma.Decimal(String(data.longitude)),
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                deletedAt: null,
-                primary: data.primary ?? true
-            };
+            const address = this.buildAddressPayload(data);
             this.addresses[addressIndex] = address;
         }
     }
@@ -86,6 +54,27 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         if (addressIndex >= 0) {
             this.addresses[addressIndex].primary = primary;
         }
+    }
+
+    buildAddressPayload(data: Prisma.AddressUncheckedCreateInput) {
+        const address = {
+            id: 1,
+            uuid: data.uuid ?? randomUUID(),
+            userId: data.userId,
+            street: data.street,
+            city: data.city,
+            district: data.district,
+            state: data.state,
+            number: data.number ?? null,
+            zipcode: data.zipcode ?? null,
+            latitude: new Prisma.Decimal(String(data.latitude)),
+            longitude: new Prisma.Decimal(String(data.longitude)),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            deletedAt: null,
+            primary: data.primary ?? true
+        };
+        return address;
     }
 }
 

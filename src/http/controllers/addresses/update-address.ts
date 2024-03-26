@@ -4,27 +4,13 @@ import { z } from 'zod';
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
 import { UpdateAddressUseCase } from '@/use-cases/addresses/update-address';
 import { PrismaAddressesRepository } from '@/repositories/prisma/prisma-addresses-repository';
+import { addressBodySchema } from './address-body-schema';
 
 export async function updateAddress(request: FastifyRequest, reply: FastifyReply) {
-    const updateAddressBodySchema = z.object({
-        street: z.string(),
-        city: z.string(),
-        district: z.string(),
-        state: z.string(),
-        number: z.number().optional(),
-        zipcode: z.string().length(9).optional(),
-        latitude: z.number().refine((value) => {
-            return Math.abs(value) <= 90;
-        }),
-        longitude: z.number().refine((value) => {
-            return Math.abs(value) <= 180;
-        }),
-    });
-
     const userId = Number(request.user.sub);
 
     const { street, city, district, state, number, zipcode, latitude, longitude } =
-        updateAddressBodySchema.parse(request.body);
+        addressBodySchema.parse(request.body);
 
     const updateAddressParamsSchema = z.object({
         uuid: z.string().uuid(),
@@ -39,11 +25,11 @@ export async function updateAddress(request: FastifyRequest, reply: FastifyReply
         await updateAddressUseCase.execute({
             userId,
             uuid,
-            street, 
-            city, 
-            district, 
-            state, 
-            number, 
+            street,
+            city,
+            district,
+            state,
+            number,
             zipcode,
             latitude,
             longitude

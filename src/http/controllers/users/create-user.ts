@@ -5,26 +5,14 @@ import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-reposi
 import { CreateUserUseCase } from '@/use-cases/users/create-user';
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error';
 import { PrismaAddressesRepository } from '@/repositories/prisma/prisma-addresses-repository';
+import { addressBodySchema } from '../addresses/address-body-schema';
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
     const createUserBodySchema = z.object({
         name: z.string().min(3),
         email: z.string().email(),
         password: z.string().min(8),
-        address: z.object({
-            street: z.string(),
-            city: z.string(),
-            district: z.string(),
-            state: z.string(),
-            number: z.number().optional(),
-            zipcode: z.string().length(9).optional(),
-            latitude: z.number().refine((value) => {
-                return Math.abs(value) <= 90;
-            }),
-            longitude: z.number().refine((value) => {
-                return Math.abs(value) <= 180;
-            }),
-        })
+        address: addressBodySchema,
     });
 
     const { name, email, password, address } =
