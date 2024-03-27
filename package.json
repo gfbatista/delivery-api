@@ -4,7 +4,7 @@
   "description": "order delivery management",
   "main": "index.js",
   "scripts": {
-    "start:dev": "tsx watch src/server.ts",
+    "start:dev": "tsx watch --inspect src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
     "test": "vitest run --dir src/use-cases",
