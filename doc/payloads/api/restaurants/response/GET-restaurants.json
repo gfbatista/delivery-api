@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "uuid": "77c7fdbb-1a41-474f-986d-d39fc47d9715",
+        "name": "Cascata Pizzas",
+        "description": "Pizzaria",
+        "category": {
+            "id": 1
+        },
+        "street": "Rua da Esperança",
+        "city": "Franca",
+        "district": "Parque Castelo",
+        "state": "SP",
+        "number": 601,
+        "zipcode": "14403-000",
+        "latitude": -21.0460305,
+        "longitude": -47.6808633,
+        "createdAt": "2023-12-12 13:44:51",
+        "updatedAt": "2023-12-12 13:44:51",
+        "deletedAt": null
+    },
+    {
+        "id": 2,
+        "uuid": "9f6c0749-640d-475a-a3da-3d23ecfc2ad4",
+        "name": "Bangalô Batataria",
+        "description": "Batataria",
+        "category": {
+            "id": 2
+        },
+        "street": "Rua II",
+        "city": "Franca",
+        "district": "Centro",
+        "state": "SP",
+        "number": 5688,
+        "zipcode": "14407-000",
+        "latitude": -21.0460305,
+        "longitude": -47.6808633,
+        "createdAt": "2024-01-12 17:45:57",
+        "updatedAt": "2024-01-12 17:46:57",
+        "deletedAt": null
+    }
+]

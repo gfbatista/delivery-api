@@ -2,16 +2,20 @@ version: '3'
 
 services:
   delivery:
-    image: mysql/mysql-server:latest
+    image: postgres:16-alpine3.19
+    container_name: postgres_delivery-api
+    restart: always
+    tty: true
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=a
-      - MYSQL_DATABASE=delivery-db
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=delivery-db
   sonarqube:
     image: sonarqube
+    container_name: sonarqube_delivery-api
     restart: unless-stopped
     expose:
       - 9000

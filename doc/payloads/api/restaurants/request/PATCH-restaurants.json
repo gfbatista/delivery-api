@@ -1,0 +1,15 @@
+{
+    "name": "Cascata Pizzas",
+    "description": "Pizzaria",
+    "category": {
+        "id": 1
+    },
+    "street": "Rua da Esperança",
+    "city": "Franca",
+    "district": "Parque Castelo",
+    "state": "SP",
+    "number": 601,
+    "zipcode": "14403-000",
+    "latitude": -21.0460305,
+    "longitude": -47.6808633
+}
