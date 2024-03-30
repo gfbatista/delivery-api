@@ -60,6 +60,15 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
             this.categories[categoryIndex] = category;
         }
     }
+
+    async findById(id: number) {
+        const category = this.categories.find((item) => item.id === id);
+    
+        if (!category) {
+            return null;
+        }
+        return category;
+    }
 }
 
 
