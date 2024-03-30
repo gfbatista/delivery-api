@@ -39,6 +39,19 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
 
         return restaurant;
     }
+
+    async delete(restaurant: Restaurant) {
+        const restaurantIndex = this.restaurants.findIndex((item) => item.id === restaurant.id);
+
+        if (restaurantIndex >= 0) {
+            this.restaurants[restaurantIndex] = restaurant;
+        }
+    }
+
+    async findMany(page: number) {
+        return this.restaurants
+            .slice((page - 1) * 10, page * 10);
+    }
 }
 
 
