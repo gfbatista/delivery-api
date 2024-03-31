@@ -10,7 +10,6 @@
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest --dir src/use-cases",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui",
     "sonar:scanner": "sonar-scanner"
   },
   "keywords": [],

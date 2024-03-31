@@ -10,6 +10,7 @@ export async function updateDeliveryman(request: FastifyRequest, reply: FastifyR
     const updateDeliverymanBodySchema = z.object({
         name: z.string().min(3),
         driversLicense: z.string().length(11),
+        password: z.string(),
         company: z.string(),
         phone: z.string(),
         street: z.string(),
@@ -20,7 +21,7 @@ export async function updateDeliveryman(request: FastifyRequest, reply: FastifyR
         zipcode: z.string().length(9).optional(),
     });
 
-    const { name, driversLicense, company, phone, street, city, district, state, number, zipcode } =
+    const { name, driversLicense, password, company, phone, street, city, district, state, number, zipcode } =
         updateDeliverymanBodySchema.parse(request.body);
 
     const updateDeliverymanParamsSchema = z.object({
@@ -37,6 +38,7 @@ export async function updateDeliveryman(request: FastifyRequest, reply: FastifyR
             uuid,
             name,
             driversLicense,
+            password,
             company,
             phone,
             street,

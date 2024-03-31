@@ -17,9 +17,7 @@ describe('Get User Profile Use Case', () => {
         const createdUser = await usersRepository.create({
             name: 'Gilberto Ferrari',
             email: 'giba@example.com',
-            password: await hash('123456', 6),
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: await hash('123456', 6)
         });
 
         const { user } = await getUserProfileUseCase.execute({
@@ -32,7 +30,7 @@ describe('Get User Profile Use Case', () => {
     it('should not be able to get user profile with wrong id', async () => {
         await expect(() =>
             getUserProfileUseCase.execute({
-                userUuid: '8598136d-53f7-48eb-a79f-aa27705a84b3',
+                userId: 1,
             }),
         ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });

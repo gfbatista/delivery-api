@@ -52,6 +52,34 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
         return this.restaurants
             .slice((page - 1) * 10, page * 10);
     }
+
+    async save(data: Prisma.RestaurantUncheckedCreateInput, uuid: string): Promise<void> {
+        const restaurantIndex = this.restaurants.findIndex((item) => item.uuid === uuid);
+
+        if (restaurantIndex >= 0) {
+            const restaurant = {
+                id: 1,
+                uuid,
+                name: data.name,
+                description: data.description,
+                categoryId: data.categoryId,
+                street: data.street,
+                city: data.city,
+                district: data.district,
+                state: data.state,
+                number: data.number ?? null,
+                zipcode: data.zipcode ?? null,
+                latitude: new Prisma.Decimal(String(data.latitude)),
+                longitude: new Prisma.Decimal(String(data.longitude)),
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                deletedAt: null,
+            };
+
+            this.restaurants[restaurantIndex] = restaurant;
+        }
+    }
+
 }
 
 

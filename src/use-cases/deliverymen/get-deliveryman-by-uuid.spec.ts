@@ -16,6 +16,7 @@ describe('Get Deliveryman by Uuid Use Case', () => {
         await deliverymenRepository.create({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Ferrari',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876809',
             company: 'Zap Entrega',
             phone: '16990000000',

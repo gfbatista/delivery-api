@@ -17,6 +17,7 @@ describe('Update Deliveryman Use Case', () => {
         await deliverymenRepository.create({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Ferrari',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876809',
             company: 'Zap Entrega',
             phone: '16990000000',
@@ -31,6 +32,7 @@ describe('Update Deliveryman Use Case', () => {
         await updateDeliverymanUseCase.execute({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Batista',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876810',
             company: 'Particular',
             phone: '16990000000',
@@ -52,6 +54,7 @@ describe('Update Deliveryman Use Case', () => {
         await deliverymenRepository.create({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Ferrari',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876809',
             company: 'Zap Entrega',
             phone: '16990000000',
@@ -64,6 +67,7 @@ describe('Update Deliveryman Use Case', () => {
         await updateDeliverymanUseCase.execute({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Batista',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876810',
             company: 'Particular',
             phone: '16990000000',
@@ -84,6 +88,7 @@ describe('Update Deliveryman Use Case', () => {
             updateDeliverymanUseCase.execute({
                 uuid: '8c8c48e3-1ea9-40db-9de0-7a90c146b4f9',
                 name: 'Gilberto Ferrari',
+                password: '99A29DC8105FD2FA39D8CDC04733938D',
                 driversLicense: '03968876809',
                 company: 'Zap Entrega',
                 phone: '16990000000',
@@ -101,6 +106,7 @@ describe('Update Deliveryman Use Case', () => {
         await deliverymenRepository.create({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'José Silva',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876809',
             company: 'Zé Entrega',
             phone: '16990000456',
@@ -115,6 +121,7 @@ describe('Update Deliveryman Use Case', () => {
         await deliverymenRepository.create({
             uuid: '8c8c48e3-1ea9-40db-9de0-7a90c146b4f9',
             name: 'Gilberto Ferrari',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             driversLicense: '03968876877',
             company: 'Zap Entrega',
             phone: '16990000000',
@@ -130,6 +137,7 @@ describe('Update Deliveryman Use Case', () => {
             updateDeliverymanUseCase.execute({
                 uuid: '8c8c48e3-1ea9-40db-9de0-7a90c146b4f9',
                 name: 'Gilberto Ferrari',
+                password: '99A29DC8105FD2FA39D8CDC04733938D',
                 driversLicense: '03968876809',
                 company: 'Zap Entrega',
                 phone: '16990000000',

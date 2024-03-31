@@ -44,4 +44,13 @@ export class PrismaRestaurantsRepository implements RestaurantsRepository {
 
         return restaurants;
     }
+
+    async save(data: Prisma.RestaurantUncheckedCreateInput, uuid: string): Promise<void> {
+        await prisma.restaurant.update({
+            where: {
+                uuid,
+            },
+            data,
+        });
+    }
 }

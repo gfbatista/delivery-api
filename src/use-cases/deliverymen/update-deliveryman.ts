@@ -7,6 +7,7 @@ interface UpdateDeliverymanRequest {
     name: string
     driversLicense: string
     company: string
+    password: string
     phone: string
     street: string
     city: string
@@ -19,7 +20,7 @@ interface UpdateDeliverymanRequest {
 export class UpdateDeliverymanUseCase {
     constructor(private deliverymenRepository: DeliverymenRepository) { }
 
-    async execute({ uuid, name, driversLicense, company, phone, street, city, district, state, number, zipcode }: UpdateDeliverymanRequest) {
+    async execute({ uuid, name, driversLicense, company, password, phone, street, city, district, state, number, zipcode }: UpdateDeliverymanRequest) {
         const deliveryman = await this.deliverymenRepository.findByUuid(uuid);
 
         if (!deliveryman) {
@@ -35,6 +36,7 @@ export class UpdateDeliverymanUseCase {
         await this.deliverymenRepository.save({
             name,
             driversLicense,
+            password,
             company,
             phone,
             street,

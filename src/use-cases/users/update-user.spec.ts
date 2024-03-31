@@ -17,18 +17,14 @@ describe('Update User Use Case', () => {
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         });
 
         await updateUserUseCase.execute({
             uuid: '00a860ab-eea8-4278-a7e2-450ddb82ea94',
             name: 'Gilberto Batista',
             email: 'gilbertobatista@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         },);
 
         const user = await usersRepository.findByEmail('gilbertobatista@email.com');
@@ -41,9 +37,7 @@ describe('Update User Use Case', () => {
                 uuid: '8c8c48e3-1ea9-40db-9de0-7a90c146b4f9',
                 name: 'Gilberto Batista',
                 email: 'gilbertobatista@email.com',
-                password: '99A29DC8105FD2FA39D8CDC04733938D',
-                latitude: -21.0460305,
-                longitude: -47.6808633
+                password: '99A29DC8105FD2FA39D8CDC04733938D'
             },)
         ).rejects.toBeInstanceOf(ResourceNotFoundError);
     });

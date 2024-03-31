@@ -20,9 +20,7 @@ describe('Update Primary Address Use Case', () => {
             uuid: '00eebae1-d24e-4089-bc2a-5779a71890a9',
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         });
 
         await addressesRepository.create({

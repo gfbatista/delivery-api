@@ -15,9 +15,7 @@ describe('Get all Users Use Case', () => {
         await usersRepository.create({
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: '99A29DC8105FD2FA39D8CDC04733938D',
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: '99A29DC8105FD2FA39D8CDC04733938D'
         });
 
         const { users } = await getAllUsersUseCase.execute(1);

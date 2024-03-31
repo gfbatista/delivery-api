@@ -15,6 +15,7 @@ describe('Get all Deliverymen Use Case', () => {
         await deliverymenRepository.create({
             name: 'Gilberto Ferrari',
             driversLicense: '03968876809',
+            password: '99A29DC8105FD2FA39D8CDC04733938D',
             company: 'Zap Entrega',
             phone: '16990000000',
             street: 'Rua Chile',

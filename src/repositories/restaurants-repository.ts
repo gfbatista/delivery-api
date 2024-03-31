@@ -5,4 +5,5 @@ export interface RestaurantsRepository {
     findByUuid(uuid: string): Promise<Restaurant | null>
     delete(restaurant: Restaurant): Promise<void>
     findMany(page: number): Promise<Restaurant[]>
+    save(data: Prisma.RestaurantUncheckedCreateInput, uuid: string): Promise<void>
 }

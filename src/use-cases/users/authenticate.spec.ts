@@ -17,9 +17,7 @@ describe('Authenticate Use Case', () => {
         await usersRepository.create({
             name: 'Gilberto Ferrari',
             email: 'gilberto@email.com',
-            password: await hash('123456', 6),
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: await hash('123456', 6)
         });
 
         const { user } = await authenticateUseCase.execute({
@@ -43,9 +41,7 @@ describe('Authenticate Use Case', () => {
         await usersRepository.create({
             name: 'Gilberto Ferrari',
             email: 'giba@example.com',
-            password: await hash('123456', 6),
-            latitude: -21.0460305,
-            longitude: -47.6808633
+            password: await hash('123456', 6)
         });
 
         await expect(() =>
