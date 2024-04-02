@@ -5,30 +5,10 @@ import { UpdateRestaurantUseCase } from '@/use-cases/restaurants/update-restaura
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { NOT_FOUND, NO_CONTENT } from 'http-status';
 import { z } from 'zod';
+import { restaurantBodySchema } from './restaurant-body-schema';
 
 export async function updateRestaurant(request: FastifyRequest, reply: FastifyReply) {
-    const createRestaurantBodySchema = z.object({
-        name: z.string(),
-        description: z.string(),
-        street: z.string(),
-        category: z.object({
-            id: z.number()
-        }),
-        city: z.string(),
-        district: z.string(),
-        state: z.string(),
-        number: z.number().optional(),
-        zipcode: z.string().length(9).optional(),
-        latitude: z.number().refine((value) => {
-            return Math.abs(value) <= 90;
-        }),
-        longitude: z.number().refine((value) => {
-            return Math.abs(value) <= 180;
-        }),
-    });
-
-    const { name, description, category, street, city, district, state, number, zipcode, latitude, longitude } =
-        createRestaurantBodySchema.parse(request.body);
+    const { name, description, category, street, city, district, state, number, zipcode, latitude, longitude } = restaurantBodySchema.parse(request.body);
 
     const updateRestaurantParamsSchema = z.object({
         uuid: z.string().uuid(),

@@ -1,28 +1,15 @@
-import { CONFLICT, NOT_FOUND, NO_CONTENT } from 'http-status';
-import { FastifyReply, FastifyRequest } from 'fastify';
-import { z } from 'zod';
-import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
 import { PrismaDeliverymenRepository } from '@/repositories/prisma/prisma-deliverymen-repository';
 import { UpdateDeliverymanUseCase } from '@/use-cases/deliverymen/update-deliveryman';
 import { DeliverymanAlreadyExistsError } from '@/use-cases/errors/deliveryman-already-exists-error';
+import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { CONFLICT, NOT_FOUND, NO_CONTENT } from 'http-status';
+import { z } from 'zod';
+import { deliverymanBodySchema } from './deliveryman-body-schema';
 
 export async function updateDeliveryman(request: FastifyRequest, reply: FastifyReply) {
-    const updateDeliverymanBodySchema = z.object({
-        name: z.string().min(3),
-        driversLicense: z.string().length(11),
-        password: z.string(),
-        company: z.string(),
-        phone: z.string(),
-        street: z.string(),
-        city: z.string(),
-        district: z.string(),
-        state: z.string(),
-        number: z.number().optional(),
-        zipcode: z.string().length(9).optional(),
-    });
-
     const { name, driversLicense, password, company, phone, street, city, district, state, number, zipcode } =
-        updateDeliverymanBodySchema.parse(request.body);
+        deliverymanBodySchema.parse(request.body);
 
     const updateDeliverymanParamsSchema = z.object({
         uuid: z.string().uuid(),

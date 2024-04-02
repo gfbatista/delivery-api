@@ -6,24 +6,7 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
     public restaurants: Restaurant[] = [];
 
     async create(data: Prisma.RestaurantUncheckedCreateInput) {
-        const restaurant = {
-            id: 1,
-            uuid: data.uuid ?? randomUUID(),
-            name: data.name,
-            description: data.description,
-            categoryId: data.categoryId,
-            street: data.street,
-            city: data.city,
-            district: data.district,
-            state: data.state,
-            number: data.number ?? null,
-            zipcode: data.zipcode ?? null,
-            latitude: new Prisma.Decimal(String(data.latitude)),
-            longitude: new Prisma.Decimal(String(data.longitude)),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-        };
+        const restaurant = this.buildRestaurantPayload(data);
 
         this.restaurants.push(restaurant);
 
@@ -57,27 +40,32 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
         const restaurantIndex = this.restaurants.findIndex((item) => item.uuid === uuid);
 
         if (restaurantIndex >= 0) {
-            const restaurant = {
-                id: 1,
-                uuid,
-                name: data.name,
-                description: data.description,
-                categoryId: data.categoryId,
-                street: data.street,
-                city: data.city,
-                district: data.district,
-                state: data.state,
-                number: data.number ?? null,
-                zipcode: data.zipcode ?? null,
-                latitude: new Prisma.Decimal(String(data.latitude)),
-                longitude: new Prisma.Decimal(String(data.longitude)),
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                deletedAt: null,
-            };
+            const restaurant = this.buildRestaurantPayload(data, uuid);
 
             this.restaurants[restaurantIndex] = restaurant;
         }
+    }
+
+    buildRestaurantPayload(data: Prisma.RestaurantUncheckedCreateInput, uuid?: string) {
+        const restaurant = {
+            id: 1,
+            uuid: uuid ?? data.uuid ?? randomUUID(),
+            name: data.name,
+            description: data.description,
+            categoryId: data.categoryId,
+            street: data.street,
+            city: data.city,
+            district: data.district,
+            state: data.state,
+            number: data.number ?? null,
+            zipcode: data.zipcode ?? null,
+            latitude: new Prisma.Decimal(String(data.latitude)),
+            longitude: new Prisma.Decimal(String(data.longitude)),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            deletedAt: null,
+        };
+        return restaurant;
     }
 
 }
