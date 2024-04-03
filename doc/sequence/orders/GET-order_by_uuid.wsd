@@ -1,0 +1,5 @@
+@startuml Fluxo de busca do pedido do usuário por uuid
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/orders/:uuid
+"delivery-db"  -> "delivery-api" : Retorna o pedido [200]
+@enduml

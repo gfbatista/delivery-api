@@ -1,0 +1,5 @@
+@startuml Fluxo de busca do pedidos do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : GET /v1/orders
+"delivery-db"  -> "delivery-api" : Retorna os pedidos [200]
+@enduml

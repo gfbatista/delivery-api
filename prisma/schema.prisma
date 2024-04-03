@@ -17,6 +17,7 @@ model User {
   updatedAt DateTime? @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
   addresses Address[]
+  Order     Order[]
 
   @@map("users")
 }
@@ -53,6 +54,7 @@ model Address {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
+  Order     Order[]
 
   @@map("addresses")
 }
@@ -87,6 +89,7 @@ model Restaurant {
 
   name        String
   description String
+  rate        Float?
   street      String
   city        String
   district    String
@@ -98,6 +101,43 @@ model Restaurant {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime? @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
+  Order       Order[]
 
   @@map("restaurants")
+}
+
+enum PaymentStatusEnum {
+  PAID
+  NOT_PAID
+}
+
+enum OrderStatusEnum {
+  CREATED
+  ACCEPTED
+  COLLECTED
+  DELIVERED
+  CANCELED
+}
+
+model Order {
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(uuid())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @map("user_id")
+
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId Int        @map("restaurant_id")
+
+  address   Address @relation(fields: [addressId], references: [id])
+  addressId Int     @map("address_id")
+
+  total         Float
+  rate          Float?
+  paymentStatus PaymentStatusEnum @default(NOT_PAID) @map("payment_status")
+  orderStatus   OrderStatusEnum   @default(CREATED) @map("order_status")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime?         @updatedAt @map("updated_at")
+
+  @@map("orders")
 }

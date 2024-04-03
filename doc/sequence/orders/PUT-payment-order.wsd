@@ -1,0 +1,5 @@
+@startuml Fluxo de atualização do pagamento do pedido do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PUT /v1/orders/payment/{uuid}
+"delivery-db"  -> "delivery-api" : Atualiza o pagamento do pedido [201]
+@enduml

@@ -52,6 +52,7 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
             uuid: uuid ?? data.uuid ?? randomUUID(),
             name: data.name,
             description: data.description,
+            rate: data.rate ?? 0,
             categoryId: data.categoryId,
             street: data.street,
             city: data.city,

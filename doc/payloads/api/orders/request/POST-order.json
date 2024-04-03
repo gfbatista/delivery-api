@@ -1,0 +1,12 @@
+{
+    "user": {
+        "id": 1
+    },
+    "restaurant": {
+        "id": 1
+    },
+    "address": {
+        "id": 1
+    },
+    "total": 15.0
+}

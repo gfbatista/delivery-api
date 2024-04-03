@@ -1,0 +1,5 @@
+@startuml Fluxo de criação do pedido do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : POST /v1/orders
+"delivery-db"  -> "delivery-api" : Salva o pedido [201]
+@enduml

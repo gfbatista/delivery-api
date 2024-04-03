@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração de alteração do pedido do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PATCH /v1/orders/:uuid
+"delivery-db"  -> "delivery-api" : Altera o pedido [204]
+@enduml

@@ -1,0 +1,5 @@
+@startuml Fluxo de atualização do status do pedido do usuário
+database "delivery-db"
+"delivery-api" -> "delivery-db" : PUT /v1/orders/status/{uuid}
+"delivery-db"  -> "delivery-api" : Atualiza o status do pedido [201]
+@enduml
