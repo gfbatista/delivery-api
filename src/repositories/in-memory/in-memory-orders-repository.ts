@@ -23,6 +23,10 @@ export class InMemoryOrdersRepository implements OrdersRepository {
 
         return order;
     }
+
+    async findManyByUser(userId: number, page: number): Promise<Order[]> {
+        return this.orders.filter((item) => item.userId === userId).slice((page - 1) * 10, page * 10);
+    }
 }
 
 
