@@ -60,4 +60,14 @@ export class PrismaAddressesRepository implements AddressesRepository {
             },
         });
     }
+
+    async findById(id: number) {
+        const address = await prisma.address.findUnique({
+            where: {
+                id,
+            },
+        });
+    
+        return address;
+    }
 }

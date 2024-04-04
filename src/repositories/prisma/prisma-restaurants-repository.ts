@@ -53,4 +53,14 @@ export class PrismaRestaurantsRepository implements RestaurantsRepository {
             data,
         });
     }
+
+    async findById(id: number) {
+        const restaurant = await prisma.restaurant.findUnique({
+            where: {
+                id,
+            },
+        });
+    
+        return restaurant;
+    }
 }

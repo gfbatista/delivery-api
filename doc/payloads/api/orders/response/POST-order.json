@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "uuid": "f53678d5-3107-4433-9fa8-480578847371",
+    "userId": 1,
+    "restaurantId": 1,
+    "addressId": 1,
+    "total": 15,
+    "rate": null,
+    "paymentStatus": "NOT_PAID",
+    "orderStatus": "CREATED",
+    "createdAt": "2024-04-03T19:50:44.590Z",
+    "updatedAt": "2024-04-03T19:50:44.590Z"
+}

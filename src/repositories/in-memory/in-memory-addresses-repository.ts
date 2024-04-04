@@ -56,6 +56,15 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         }
     }
 
+    async findById(id: number) {
+        const address = this.addresses.find((item) => item.id === id);
+    
+        if (!address) {
+            return null;
+        }
+        return address;
+    }
+
     buildAddressPayload(data: Prisma.AddressUncheckedCreateInput) {
         const address = {
             id: 1,
@@ -76,6 +85,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         };
         return address;
     }
+    
 }
 
 

@@ -15,7 +15,6 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
             updatedAt: new Date(),
             deletedAt: null,
         };
-
         this.categories.push(category);
 
         return category;

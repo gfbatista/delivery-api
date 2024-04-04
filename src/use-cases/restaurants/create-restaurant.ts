@@ -25,9 +25,9 @@ export class CreateRestaurantUseCase {
 
         const categoryId = category.id;
 
-        const foundCategory = await this.categoriesRepository.findById(categoryId);
+        const categoryFound = await this.categoriesRepository.findById(categoryId);
 
-        if (!foundCategory) {
+        if (!categoryFound) {
             throw new ResourceNotFoundError();
         }
 

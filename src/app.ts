@@ -13,6 +13,7 @@ import { addressesRoutes } from './http/controllers/addresses/routes';
 import fastifyJwt from '@fastify/jwt';
 import { fromZodError } from 'zod-validation-error';
 import { restaurantsRoutes } from './http/controllers/restaurants/routes';
+import { ordersRoutes } from './http/controllers/orders/routes';
 
 export const app = fastify();
 
@@ -31,6 +32,7 @@ app.register(usersRoutes);
 app.register(deliverymenRoutes);
 app.register(addressesRoutes);
 app.register(restaurantsRoutes);
+app.register(ordersRoutes);
 
 app.register(fastifyHealthcheck, {
     healthcheckUrl: '/health',

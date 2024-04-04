@@ -16,7 +16,6 @@ export class InMemoryUsersRepository implements UsersRepository {
             updatedAt: new Date(),
             deletedAt: null,
         };
-
         this.users.push(user);
 
         return user;

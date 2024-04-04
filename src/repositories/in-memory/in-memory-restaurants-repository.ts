@@ -46,6 +46,15 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
         }
     }
 
+    async findById(id: number) {
+        const restaurant = this.restaurants.find((item) => item.id === id);
+    
+        if (!restaurant) {
+            return null;
+        }
+        return restaurant;
+    }
+
     buildRestaurantPayload(data: Prisma.RestaurantUncheckedCreateInput, uuid?: string) {
         const restaurant = {
             id: 1,
