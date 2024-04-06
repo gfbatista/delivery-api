@@ -1,5 +1,5 @@
 import { prisma } from '@/config/prisma';
-import { Order, Prisma } from '@prisma/client';
+import { Order, OrderPaymentEnum, OrderStatusEnum, Prisma } from '@prisma/client';
 import { OrdersRepository } from '../orders-repository';
 
 export class PrismaOrdersRepository implements OrdersRepository {
@@ -43,7 +43,6 @@ export class PrismaOrdersRepository implements OrdersRepository {
         return order;
     }
 
-
     async updateOrderRate(uuid: string, rate: number): Promise<void> {
         await prisma.order.update({
             where: {
@@ -51,6 +50,28 @@ export class PrismaOrdersRepository implements OrdersRepository {
             },
             data: {
                 rate
+            },
+        });
+    }
+
+    async updateOrderStatus(uuid: string, orderStatus: OrderStatusEnum): Promise<void> {
+        await prisma.order.update({
+            where: {
+                uuid,
+            },
+            data: {
+                orderStatus
+            },
+        });
+    }
+
+    async updateOrderPayment(uuid: string, orderPayment: OrderPaymentEnum): Promise<void> {
+        await prisma.order.update({
+            where: {
+                uuid,
+            },
+            data: {
+                orderPayment
             },
         });
     }

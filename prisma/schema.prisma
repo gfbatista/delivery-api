@@ -106,7 +106,7 @@ model Restaurant {
   @@map("restaurants")
 }
 
-enum PaymentStatusEnum {
+enum OrderPaymentEnum {
   PAID
   NOT_PAID
 }
@@ -132,12 +132,12 @@ model Order {
   address   Address @relation(fields: [addressId], references: [id])
   addressId Int     @map("address_id")
 
-  total         Float
-  rate          Float?
-  paymentStatus PaymentStatusEnum @default(NOT_PAID) @map("payment_status")
-  orderStatus   OrderStatusEnum   @default(CREATED) @map("order_status")
-  createdAt     DateTime          @default(now()) @map("created_at")
-  updatedAt     DateTime?         @updatedAt @map("updated_at")
+  total        Float
+  rate         Float?
+  orderPayment OrderPaymentEnum @default(NOT_PAID) @map("payment_status")
+  orderStatus  OrderStatusEnum  @default(CREATED) @map("order_status")
+  createdAt    DateTime         @default(now()) @map("created_at")
+  updatedAt    DateTime?        @updatedAt @map("updated_at")
 
   @@map("orders")
 }

@@ -1,21 +1,22 @@
+import { OrderStatusEnum } from '@prisma/client';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { OrdersRepository } from '@/repositories/orders-repository';
 
-interface UpdateOrderRateRequest {
+interface UpdateOrderStatusRequest {
     uuid: string
-    rate: number
+    orderStatus: OrderStatusEnum
 }
 
-export class UpdateOrderRateUseCase {
+export class UpdateOrderStatusUseCase {
     constructor(private ordersRepository: OrdersRepository) { }
 
-    async execute({ uuid, rate }: UpdateOrderRateRequest) {
+    async execute({ uuid, orderStatus }: UpdateOrderStatusRequest) {
         const order = await this.ordersRepository.findByUuid(uuid);
 
         if (!order) {
             throw new ResourceNotFoundError();
         }
 
-        await this.ordersRepository.updateOrderRate(uuid, rate);
+        await this.ordersRepository.updateOrderStatus(uuid, orderStatus);
     }
 }

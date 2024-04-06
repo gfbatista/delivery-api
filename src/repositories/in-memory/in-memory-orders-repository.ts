@@ -1,4 +1,4 @@
-import { Order, OrderStatusEnum, PaymentStatusEnum, Prisma } from '@prisma/client';
+import { Order, OrderPaymentEnum, OrderStatusEnum, Prisma } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { OrdersRepository } from '../orders-repository';
 
@@ -14,7 +14,7 @@ export class InMemoryOrdersRepository implements OrdersRepository {
             addressId: data.addressId,
             total: data.total,
             rate: data.rate ?? 0,
-            paymentStatus: PaymentStatusEnum.NOT_PAID,
+            orderPayment: OrderPaymentEnum.NOT_PAID,
             orderStatus: OrderStatusEnum.CREATED,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -38,11 +38,27 @@ export class InMemoryOrdersRepository implements OrdersRepository {
         return order;
     }
 
-    async updateOrderRate(uuid: string, rate: number){
+    async updateOrderRate(uuid: string, rate: number) {
         const orderIndex = this.orders.findIndex((item) => item.uuid === uuid);
 
         if (orderIndex >= 0) {
             this.orders[orderIndex].rate = rate;
+        }
+    }
+
+    async updateOrderStatus(uuid: string, orderStatus: OrderStatusEnum) {
+        const orderIndex = this.orders.findIndex((item) => item.uuid === uuid);
+
+        if (orderIndex >= 0) {
+            this.orders[orderIndex].orderStatus = orderStatus;
+        }
+    }
+
+    async updateOrderPayment(uuid: string, orderPayment: OrderPaymentEnum) {
+        const orderIndex = this.orders.findIndex((item) => item.uuid === uuid);
+
+        if (orderIndex >= 0) {
+            this.orders[orderIndex].orderPayment = orderPayment;
         }
     }
 }
