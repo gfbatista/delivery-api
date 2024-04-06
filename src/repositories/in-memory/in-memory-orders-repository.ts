@@ -27,6 +27,16 @@ export class InMemoryOrdersRepository implements OrdersRepository {
     async findManyByUser(userId: number, page: number): Promise<Order[]> {
         return this.orders.filter((item) => item.userId === userId).slice((page - 1) * 10, page * 10);
     }
+
+    async findByUuid(uuid: string) {
+        const order = this.orders.find((order) => order.uuid === uuid);
+
+        if (!order) {
+            return null;
+        }
+
+        return order;
+    }
 }
 
 

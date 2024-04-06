@@ -27,4 +27,19 @@ export class PrismaOrdersRepository implements OrdersRepository {
 
         return orders;
     }
+
+    async findByUuid(uuid: string): Promise<Order | null> {
+        const order = await prisma.order.findUnique({
+            include: {
+                address: true,
+                user: true,
+                restaurant: true
+            },
+            where: {
+                uuid,
+            },
+        });
+
+        return order;
+    }
 }
