@@ -42,4 +42,16 @@ export class PrismaOrdersRepository implements OrdersRepository {
 
         return order;
     }
+
+
+    async updateOrderRate(uuid: string, rate: number): Promise<void> {
+        await prisma.order.update({
+            where: {
+                uuid,
+            },
+            data: {
+                rate
+            },
+        });
+    }
 }

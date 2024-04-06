@@ -37,6 +37,14 @@ export class InMemoryOrdersRepository implements OrdersRepository {
 
         return order;
     }
+
+    async updateOrderRate(uuid: string, rate: number){
+        const orderIndex = this.orders.findIndex((item) => item.uuid === uuid);
+
+        if (orderIndex >= 0) {
+            this.orders[orderIndex].rate = rate;
+        }
+    }
 }
 
 

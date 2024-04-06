@@ -1,5 +1,5 @@
 @startuml Fluxo de atualização da avaliação do pedido do usuário
 database "delivery-db"
-"delivery-api" -> "delivery-db" : PUT /v1/orders/rate/{uuid}
+"delivery-api" -> "delivery-db" : PUT /v1/orders/{uuid}/rate
 "delivery-db"  -> "delivery-api" : Atualiza a avaliação do pedido [201]
 @enduml
