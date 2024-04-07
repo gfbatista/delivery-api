@@ -75,4 +75,13 @@ export class PrismaOrdersRepository implements OrdersRepository {
             },
         });
     }
+
+    async save(data: Prisma.OrderUncheckedCreateInput, uuid: string): Promise<void> {
+        await prisma.order.update({
+            where: {
+                uuid,
+            },
+            data,
+        });
+    }
 }

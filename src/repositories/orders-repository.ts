@@ -7,4 +7,5 @@ export interface OrdersRepository {
     updateOrderRate(uuid: string, rate: number): Promise<void>
     updateOrderStatus(uuid: string, orderStatus: OrderStatusEnum): Promise<void>
     updateOrderPayment(uuid: string, orderPayment: OrderPaymentEnum): Promise<void>
+    save(data: Prisma.OrderUncheckedCreateInput, uuid: string): Promise<void>
 }

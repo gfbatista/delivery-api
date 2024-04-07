@@ -61,6 +61,27 @@ export class InMemoryOrdersRepository implements OrdersRepository {
             this.orders[orderIndex].orderPayment = orderPayment;
         }
     }
+
+    async save(data: Prisma.OrderUncheckedCreateInput, uuid: string) {
+        const orderIndex = this.orders.findIndex((item) => item.uuid === uuid);
+
+        if (orderIndex >= 0) {
+            const order = {
+                id: 1,
+                uuid: data.uuid ?? randomUUID(),
+                userId: data.userId,
+                restaurantId: data.restaurantId,
+                addressId: data.addressId,
+                total: data.total,
+                rate: data.rate ?? 0,
+                orderPayment: data.orderPayment ?? OrderPaymentEnum.NOT_PAID,
+                orderStatus: data.orderStatus ?? OrderStatusEnum.CREATED,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+            this.orders[orderIndex] = order;
+        }
+    }
 }
 
 
