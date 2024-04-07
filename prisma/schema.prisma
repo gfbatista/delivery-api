@@ -76,6 +76,7 @@ model Deliveryman {
   createdAt      DateTime  @default(now()) @map("created_at")
   updatedAt      DateTime? @updatedAt @map("updated_at")
   deletedAt      DateTime? @map("deleted_at")
+  Order          Order[]
 
   @@map("deliverymen")
 }
@@ -131,6 +132,9 @@ model Order {
 
   address   Address @relation(fields: [addressId], references: [id])
   addressId Int     @map("address_id")
+
+  deliveryman   Deliveryman? @relation(fields: [deliverymanId], references: [id])
+  deliverymanId Int?         @map("deliveryman_id")
 
   total        Float
   rate         Float?
