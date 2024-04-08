@@ -10,8 +10,7 @@
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest --dir src/use-cases",
     "test:coverage": "vitest run --coverage",
-    "sonar:scanner": "sonar-scanner",
-    "prepare": "husky install"
+    "sonar:scanner": "sonar-scanner"
   },
   "husky": {
     "hooks": {
