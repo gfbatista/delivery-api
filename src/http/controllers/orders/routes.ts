@@ -7,6 +7,7 @@ import { updateOrderRate } from './update-order-rate';
 import { updateOrderStatus } from './update-order-status';
 import { updateOrderPayment } from './update-order-payment';
 import { updateOrder } from './update-order';
+import { getAllOrdersByDeliveryman } from './get-all-orders-by-deliveryman';
 
 export async function ordersRoutes(app: FastifyInstance) {
     app.post('/orders', { onRequest: [verifyJwt] }, createOrder);
@@ -16,4 +17,5 @@ export async function ordersRoutes(app: FastifyInstance) {
     app.put('/orders/:uuid/status', updateOrderStatus);
     app.put('/orders/:uuid/payment', updateOrderPayment);
     app.patch('/orders/:uuid', { onRequest: [verifyJwt] }, updateOrder);
+    app.get('/orders/deliverymen', { onRequest: [verifyJwt] }, getAllOrdersByDeliveryman);
 }

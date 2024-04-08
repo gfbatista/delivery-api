@@ -28,6 +28,24 @@ export class PrismaOrdersRepository implements OrdersRepository {
         return orders;
     }
 
+    async findManyByDeliveryman(deliverymanId: number, page: number): Promise<Order[]> {
+        const orders = await prisma.order.findMany({
+            include: {
+                address: true,
+                user: true,
+                restaurant: true,
+                deliveryman: true,
+            },
+            where: {
+                deliverymanId
+            },
+            skip: (page - 1) * 10,
+            take: 10,
+        });
+
+        return orders;
+    }
+
     async findByUuid(uuid: string): Promise<Order | null> {
         const order = await prisma.order.findUnique({
             include: {

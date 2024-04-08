@@ -12,6 +12,7 @@ export class InMemoryOrdersRepository implements OrdersRepository {
             userId: data.userId,
             restaurantId: data.restaurantId,
             addressId: data.addressId,
+            deliverymanId: data.deliverymanId ?? null,
             total: data.total,
             rate: data.rate ?? 0,
             orderPayment: OrderPaymentEnum.NOT_PAID,
@@ -26,6 +27,10 @@ export class InMemoryOrdersRepository implements OrdersRepository {
 
     async findManyByUser(userId: number, page: number): Promise<Order[]> {
         return this.orders.filter((item) => item.userId === userId).slice((page - 1) * 10, page * 10);
+    }
+
+    async findManyByDeliveryman(deliverymanId: number, page: number): Promise<Order[]> {
+        return this.orders.filter((item) => item.deliverymanId === deliverymanId).slice((page - 1) * 10, page * 10);
     }
 
     async findByUuid(uuid: string) {
@@ -72,6 +77,7 @@ export class InMemoryOrdersRepository implements OrdersRepository {
                 userId: data.userId,
                 restaurantId: data.restaurantId,
                 addressId: data.addressId,
+                deliverymanId: data.deliverymanId ?? null,
                 total: data.total,
                 rate: data.rate ?? 0,
                 orderPayment: data.orderPayment ?? OrderPaymentEnum.NOT_PAID,
