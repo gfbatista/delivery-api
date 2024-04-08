@@ -13,11 +13,6 @@
     "sonar:scanner": "sonar-scanner",
     "lint": "eslint src --ext .ts --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run test && yarn lint"
-    }
-  },
   "keywords": [],
   "repository": "https://github.com/gfbatista/delivery-api",
   "author": "gfbatista <gilbertoferrari@gmail.com>",
