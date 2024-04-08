@@ -10,11 +10,12 @@
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest --dir src/use-cases",
     "test:coverage": "vitest run --coverage",
-    "sonar:scanner": "sonar-scanner"
+    "sonar:scanner": "sonar-scanner",
+    "lint": "eslint src --ext .ts --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run test"
+      "pre-commit": "yarn run test && yarn lint"
     }
   },
   "keywords": [],
