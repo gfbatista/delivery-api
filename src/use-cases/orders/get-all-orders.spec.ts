@@ -5,6 +5,7 @@ import { InMemoryRestaurantsRepository } from '@/repositories/in-memory/in-memor
 import { InMemoryCategoriesRepository } from '@/repositories/in-memory/in-memory-categories-repository';
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
 import { InMemoryAddressesRepository } from '@/repositories/in-memory/in-memory-addresses-repository';
+import { OrderPaymentEnum, OrderStatusEnum } from '@prisma/client';
 
 let ordersRepository: InMemoryOrdersRepository;
 let addressesRepository: InMemoryAddressesRepository;
@@ -69,7 +70,7 @@ describe('Get all Orders by User Use Case', () => {
             total: 10.5
         });
 
-        const { orders } = await getAllOrdersByUserUseCase.execute(1, 1);
+        const { orders } = await getAllOrdersByUserUseCase.execute(1, OrderPaymentEnum.NOT_PAID, OrderStatusEnum.CREATED, 1);
 
         expect(orders).toHaveLength(1);
         expect(orders).toEqual([expect.objectContaining({ total: 10.5 })]);
@@ -114,7 +115,7 @@ describe('Get all Orders by User Use Case', () => {
             longitude: -47.6808633
         });
 
-        const { orders } = await getAllOrdersByUserUseCase.execute(1, 1);
+        const { orders } = await getAllOrdersByUserUseCase.execute(1, OrderPaymentEnum.NOT_PAID, OrderStatusEnum.CREATED, 1);
 
         expect(orders).toHaveLength(0);
     });

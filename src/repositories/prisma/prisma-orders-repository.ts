@@ -11,7 +11,7 @@ export class PrismaOrdersRepository implements OrdersRepository {
         return order;
     }
 
-    async findManyByUser(userId: number, page: number): Promise<Order[]> {
+    async findManyByUser(userId: number, orderPayment: OrderPaymentEnum, orderStatus: OrderStatusEnum, page: number): Promise<Order[]> {
         const orders = await prisma.order.findMany({
             include: {
                 address: true,
@@ -19,7 +19,9 @@ export class PrismaOrdersRepository implements OrdersRepository {
                 restaurant: true
             },
             where: {
-                userId
+                userId,
+                orderStatus,
+                orderPayment,
             },
             skip: (page - 1) * 10,
             take: 10,
