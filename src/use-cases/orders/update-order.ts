@@ -22,21 +22,13 @@ export class UpdateOrderUseCase {
     constructor(private ordersRepository: OrdersRepository, private addressesRepository: AddressesRepository, private restaurantsRepository: RestaurantsRepository) { }
 
     async execute({ uuid, user, restaurant, address, total }: UpdateOrderRequest) {
-        const restaurantFound = await this.restaurantsRepository.findById(restaurant.id);
+        const [restaurantFound, addressesFound, orderFound] = await Promise.all([
+            this.restaurantsRepository.findById(restaurant.id),
+            this.addressesRepository.findById(address.id),
+            this.ordersRepository.findByUuid(uuid),
+        ]);
 
-        if (!restaurantFound) {
-            throw new ResourceNotFoundError();
-        }
-
-        const addressesFound = await this.addressesRepository.findById(address.id);
-
-        if (!addressesFound) {
-            throw new ResourceNotFoundError();
-        }
-
-        const orderFound = await this.ordersRepository.findByUuid(uuid);
-
-        if (!orderFound) {
+        if (!restaurantFound || !addressesFound || !orderFound) {
             throw new ResourceNotFoundError();
         }
 

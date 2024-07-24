@@ -58,7 +58,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
 
     async findById(id: number) {
         const address = this.addresses.find((item) => item.id === id);
-    
+
         if (!address) {
             return null;
         }
@@ -85,7 +85,7 @@ export class InMemoryAddressesRepository implements AddressesRepository {
         };
         return address;
     }
-    
+
 }
 
 
