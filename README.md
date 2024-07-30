@@ -1,8 +1,17 @@
 # delivery-api
 
-### Executando a api: ### 
-Executando Docker Compose:
-`docker compose up -d`
+# Clone Repository
+$ git clone https://github.com/gfbatista/delivery-api.git
 
-Criando as tabelas:
-`npx prisma migrate dev` ou `npx prisma db push`
+# Install Dependencies
+$ npm install
+
+# rename file .env.example to .env
+
+# run docker compose
+$ docker compose up -d
+
+$ npx prisma migrate dev
+
+# Run Tests
+$ npm run test
