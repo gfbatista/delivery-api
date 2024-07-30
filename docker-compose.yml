@@ -1,7 +1,19 @@
 version: '3'
 
 services:
-  delivery:
+  api:
+    build: .
+    container_name: delivery-api
+    restart: always
+    tty: true
+    ports: 
+       - 9000:9000
+    networks:
+      - compose-bridge
+    depends_on:
+       - postgres
+
+  postgres:
     image: postgres:16-alpine3.19
     container_name: postgres_delivery-api
     restart: always
@@ -13,11 +25,19 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=root
       - POSTGRES_DB=delivery-db
+    networks:
+      - compose-bridge
+    volumes:
+      - ./postgres:/var/lib/postgres
+
   sonarqube:
     image: sonarqube
     container_name: sonarqube_delivery-api
-    restart: unless-stopped
-    expose:
-      - 9000
+    restart: always
+    tty: true
     ports:
-      - "0.0.0.0:9000:9000"
+      - "0.0.0.0:9002:9000"
+
+networks:
+  compose-bridge:
+    driver: bridge
